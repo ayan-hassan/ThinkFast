@@ -1,0 +1,32 @@
+<header>
+  <span class="header-elements">
+    <form action="/" method="GET">
+      <button class="logo">ThinkFast</button>
+    </form>
+    <span class="spacer"></span>
+    <div class="create-popout">
+      <form action="/quiz/create" method="GET">
+        <button id="new-quiz-header" type="submit">+</button>
+      </form>
+    </div>
+  </span>
+
+  <!-- <%// if (!user.id) { %> -->
+  <% if (true) { %>
+  <span class="header-elements">
+    <form action="/login" method="GET">
+      <button type="submit">Login</button>
+    </form>
+    <span class="spacer"></span>
+    <form action="/register" method="GET">
+      <button type="submit">Register</button>
+    </form>
+  </span>
+  <% } else { %>
+  <span class="header-elements">
+    <form action="/urls/:id" method="GET">
+      <button type="submit">My Page</button>
+    </form>
+  </span>
+  <% } %>
+</header>
