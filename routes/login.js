@@ -34,8 +34,6 @@ router.post('/', (req, res) => {
 
   const { email, password } = req.body;
 
-  console.log(req.body);
-
   if (!email || !password) {
     res.status(400).send("Please fill in all fields");
     return;
