@@ -46,16 +46,14 @@ CREATE TABLE questions (
 CREATE TABLE choices (
   id SERIAL PRIMARY KEY NOT NULL,
   option VARCHAR(255),
-  question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE
+  question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
+  is_correct BOOLEAN
 );
-
-ALTER TABLE questions
-ADD COLUMN correct_answer INTEGER REFERENCES choices(id) ON DELETE CASCADE;
 
 CREATE TABLE user_quiz_taken_details (
   id SERIAL PRIMARY KEY NOT NULL,
   user_quiz_taken_id INTEGER REFERENCES user_quiz_taken(id) ON DELETE CASCADE,
   question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
   user_answer INTEGER REFERENCES choices(id) ON DELETE CASCADE,
-  correct_answer INTEGER REFERENCES questions(correct_answer) NOT NULL
+  correct_answer INTEGER REFERENCES choices(id) NOT NULL
 );
