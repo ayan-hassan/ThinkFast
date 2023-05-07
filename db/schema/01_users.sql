@@ -21,7 +21,7 @@ CREATE TABLE quizzes (
   title VARCHAR(255),
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   description TEXT,
-  photo_url VARCHAR(255),
+  photo_url VARCHAR(255) DEFAULT 'https://t3.ftcdn.net/jpg/02/66/33/82/360_F_266338299_wTr8tcMGNmjFbEJVnrkKXrrsHABMlqXY.jpg',
   is_unlisted BOOLEAN,
   created_at TIMESTAMP
 );
