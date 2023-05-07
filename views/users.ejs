@@ -5,9 +5,20 @@
 
   <body>
     <%- include('partials/_header') %>
-    <h1>Users</h1>
-    <button id="fetch-users">Fetch Users via AJAX</button>
-    <ul id="users"></ul>
+
+    <main class="users">
+      <section class="user-panel" id="profile">
+        <img src="http://sancarlosblog.agentfire2.com/wp-content/uploads/sites/455/2016/03/quiz-1024x1024.jpg" id="profile-img">
+      </section>
+      <section class="user-panel">
+        <div id="quizzes">
+          <p>Section 2</p>
+        </div>
+        <div id="history">
+          <p>Section 3</p>
+        </div>
+      </section>
+    </main>
   </body>
 
 </html>

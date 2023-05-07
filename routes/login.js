@@ -1,6 +1,7 @@
 const express = require('express');
 const { Pool } = require('pg');
 const router  = express.Router();
+const bcrypt = require('bcryptjs');
 const cookieSession = require('cookie-session');
 
 const app = express();
@@ -47,21 +48,22 @@ router.post('/', (req, res) => {
   `;
 
   pool.query(queryString, [email])
-    .then(user => {
-      console.log(user.rows[0]);
+    .then(query => {
+      const user = query.rows[0];
 
-      bcrypt.compare(password, user.rows[0].password)
+      bcrypt.compare(password, user.password)
       .then((result) => {
-        console.log('Result of bcrypt compare:', result);
         if (result) {
+          console.log(user.id);
           req.session.user_id = user.id;
           res.redirect(`/users/${user.id}`);
         } else {
           throw Error;
         }
       })
+      .catch(() => res.status(403).send("User not found"));
     })
-    .catch(() => res.status(403).send("User not found"));
+    .catch(() => res.status(403).send("Error fetching data"));
 
 });
 

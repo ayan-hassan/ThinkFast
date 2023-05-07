@@ -5,6 +5,7 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const bcrypt = require('bcryptjs')
 const cookieSession = require('cookie-session');
 const { Pool } = require('pg');
 
