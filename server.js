@@ -73,7 +73,6 @@ app.get('/', (req, res) => {
   }
 
   const templateVars = {
-    id: req.params.id,
     loggedIn
   };
 

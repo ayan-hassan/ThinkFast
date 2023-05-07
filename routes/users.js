@@ -19,14 +19,12 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
 
-  let loggedIn = false;
-  if (req.session.user_id) {
-    loggedIn = true;
+  if (!req.session.user_id) {
+    res.redirect('/');
   }
 
   const templateVars = {
-    id: req.params.id,
-    loggedIn
+    loggedIn: true
   };
 
   res.render('users', templateVars);
