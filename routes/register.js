@@ -34,8 +34,6 @@ router.post('/', (req, res) => {
 
   const { username, email, password } = req.body;
 
-  console.log(req.body);
-
   if (!username || !email || !password) {
     res.status(400).send("Please fill in all fields");
     return;
@@ -52,34 +50,23 @@ router.post('/', (req, res) => {
   Values ($1, $2, $3);
   `;
 
-  // check if email already exists
   pool.query(checkForUser, [email])
     .then(result => {
-      console.log(result.rows);
-      console.log(result.rows.length);
       if (result.rows.length === 0) {
         return;
       } else {
-        // if it exists, exit
-        console.log("User email found in db");
         throw Error;
       }
     })
     .then(() => {
-      console.log("hashing password");
       bcrypt.hash(password, 10, (err, hash) => {
-        console.log("Is there error?", err);
-        console.log("Got hash:", hash);
         if (err) {
           throw Error;
         }
-        console.log("Adding user to db");
         pool.query(addUser, [username, email, hash])
         .then(() => {
-          console.log("Get new user id");
           pool.query(`SELECT id FROM users WHERE email = $1`, [email])
           .then(result => {
-            console.log(result.rows[0]);
             const new_id = result.rows[0].id;
             req.session.user_id = new_id;
             res.redirect(`/users/${new_id}`);
