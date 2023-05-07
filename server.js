@@ -45,9 +45,10 @@ app.use(cookieSession({
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
-const loginRoutes = require('./routes/login')
-const registerRoutes = require('./routes/register')
-const quizRoutes = require('./routes/quiz')
+const loginRoutes = require('./routes/login');
+const registerRoutes = require('./routes/register');
+const logoutRoutes = require('./routes/logout');
+const quizRoutes = require('./routes/quiz');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -56,6 +57,7 @@ app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/login', loginRoutes);
 app.use('/register', registerRoutes);
+app.use('/logout', logoutRoutes);
 app.use('/quiz', quizRoutes);
 // Note: mount other resources here, using the same pattern above
 
@@ -64,7 +66,18 @@ app.use('/quiz', quizRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+
+  let loggedIn = false;
+  if (req.session.user_id) {
+    loggedIn = true;
+  }
+
+  const templateVars = {
+    id: req.params.id,
+    loggedIn
+  };
+
+  res.render('index', templateVars);
 });
 
 

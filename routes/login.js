@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
     return;
   }
 
-  const templateVars = {user: {}};
+  const templateVars = {user: {}, loggedIn: false};
 
   res.render('login', templateVars);
 });

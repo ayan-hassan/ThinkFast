@@ -12,7 +12,7 @@
   </span>
 
   <!-- <%// if (!user.id) { %> -->
-  <% if (true) { %>
+  <% if (!loggedIn) { %>
   <span class="header-elements">
     <form action="/login" method="GET">
       <button type="submit">Login</button>
@@ -24,7 +24,10 @@
   </span>
   <% } else { %>
   <span class="header-elements">
-    <form action="/urls/:id" method="GET">
+    <form action="/logout" method="POST">
+      <button type="submit">Logout</button>
+    </form>
+    <form action="/users" method="GET">
       <button type="submit">My Page</button>
     </form>
   </span>
