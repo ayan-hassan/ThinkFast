@@ -3,8 +3,20 @@
 
   <%- include('partials/_head') %>
 
-  <body>
+  <body class="login-page">
     <%- include('partials/_header') %>
-    <h1>Login</h1>
+
+    <main class="login">
+      <section>
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+          <h4>Email address</h4>
+          <input type="email" name="email">
+          <h4>Password</h4>
+          <input type="password" name="password">
+          <button id="login-button" type="submit">Login</button>
+        </form>
+      </section>
+    </main>
   </body>
 </html>

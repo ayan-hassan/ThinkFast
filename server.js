@@ -5,9 +5,18 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const cookieSession = require('cookie-session');
+const { Pool } = require('pg');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+const pool = new Pool({
+  user: 'labber',
+  password: '123',
+  host: 'localhost',
+  database: 'midterm'
+});
 
 app.set('view engine', 'ejs');
 
@@ -25,6 +34,10 @@ app.use(
   })
 );
 app.use(express.static('public'));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['123', '456', '789']
+}));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own

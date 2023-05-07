@@ -1,0 +1,36 @@
+h4 {
+  margin: 0;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 150%;
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+  background-color: #8974ad;
+  width: 60%;
+}
+
+#login-button {
+  font-size: 2em;
+  margin: 1em;
+}
