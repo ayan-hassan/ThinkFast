@@ -6,6 +6,7 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
+  passwrod VARCHAR(255) NOT NULL,
   profile_img VARCHAR(255)
 );
 
@@ -47,7 +48,7 @@ CREATE TABLE choices (
   id SERIAL PRIMARY KEY NOT NULL,
   option VARCHAR(255),
   question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
-  is_correct BOOLEAN
+  is_correct BOOLEAN DEFAULT false
 );
 
 CREATE TABLE user_quiz_taken_details (
