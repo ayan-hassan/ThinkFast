@@ -6,7 +6,7 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  passwrod VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
   profile_img VARCHAR(255)
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE categories (
 CREATE TABLE quizzes (
   id SERIAL PRIMARY KEY NOT NULL,
   creator_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  tite VARCHAR(255),
+  title VARCHAR(255),
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   description TEXT,
   photo_url VARCHAR(255),

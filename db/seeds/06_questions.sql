@@ -1,4 +1,4 @@
-INSERT INTO questions (id, quiz_id, question)
+INSERT INTO questions (quiz_id, question)
 VALUES
   -- Questions for Quiz 1: World Capitals
   (1, 'What is the capital of Spain?'),
@@ -79,8 +79,4 @@ VALUES
   -- Questions for Quiz 15: History
   (15, 'The statue of Libery was built in which country before being brought to the USA?'),
   (15, 'World War One officilly ended on which date?'),
-  (15, 'What year did we first land on the moon?'),
-
-
-
-
+  (15, 'What year did we first land on the moon?');
