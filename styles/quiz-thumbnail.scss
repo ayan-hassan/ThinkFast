@@ -1,9 +1,11 @@
+//------------------standard thumbnail for quiz---------------------//
+
 #quiz-thumbnail {
-  padding-top: 200px;
+  padding: 0px 15px 15px 15px;
   display: flex;
   flex-direction: column;
-  width: 20%;
-  margin: 0px;
+  width: 33%;
+
 }
 
 img {
@@ -35,4 +37,13 @@ footer {
   padding: 5px;
   margin: 0px;
   text-transform: uppercase;
+}
+
+//--------------------featured quiz thumbnail----------------------//
+
+.featured-quiz {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
 }
