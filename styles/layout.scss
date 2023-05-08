@@ -6,6 +6,7 @@ html {
 }
 
 main.container {
+  background-color: #fdecf5;
   padding-top: 350px;
   width: 90%;
   margin: 0 auto;
@@ -20,10 +21,14 @@ main.container {
   flex-direction: row;
 }
 
+.buffer {
+  background-color: #fdecf5;
+}
+
 .category-filter {
   width: 100%;
   margin: 0 auto;
-  margin-top: 160px;
+  padding-top: 160px;
   padding-bottom: 40px;
 
   display: flex;
@@ -31,6 +36,7 @@ main.container {
   align-items: center;
   position: fixed;
   z-index: 11;
+  background-color: #fdecf5;
 }
 
 .category-filter button {
