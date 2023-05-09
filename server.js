@@ -5,19 +5,11 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
-const bcrypt = require('bcryptjs')
 const cookieSession = require('cookie-session');
-const { Pool } = require('pg');
+const { pool } = require('./db/queries/users');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
-
-const pool = new Pool({
-  user: 'labber',
-  password: '123',
-  host: 'localhost',
-  database: 'midterm'
-});
 
 app.set('view engine', 'ejs');
 

@@ -1,17 +1,10 @@
 const express = require('express');
-const { Pool } = require('pg');
+const { pool } = require('../db/queries/users');
 const router  = express.Router();
 const bcrypt = require('bcryptjs');
 const cookieSession = require('cookie-session');
 
 const app = express();
-
-const pool = new Pool({
-  user: 'labber',
-  password: '123',
-  host: 'localhost',
-  database: 'midterm'
-});
 
 app.use(cookieSession({
   name: 'session',

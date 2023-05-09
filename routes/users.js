@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const { queryUser, queryUserQuizzes, queryUserHistory } = require('../db/queries/users');
 
 router.get('/', (req, res) => {
 
@@ -27,7 +28,32 @@ router.get('/:id', (req, res) => {
     loggedIn: true
   };
 
-  res.render('users', templateVars);
+  const userID = req.session.user_id;
+
+  queryUser(userID)
+    .then(result => {
+      templateVars.user = result.rows[0];
+      return templateVars;
+    })
+    .then(templateVars => {
+      queryUserQuizzes(userID)
+        .then(result => {
+          templateVars.userQuizzes = result.rows;
+          return templateVars;
+        })
+        .then(templateVars =>{
+          queryUserHistory(userID)
+            .then(result => {
+              templateVars.userHistory = result.rows;
+              return templateVars;
+            })
+            .then(templateVars => {
+              res.render('users', templateVars);
+            })
+        })
+    })
+    .catch(err => console.log(err.message));
+
 });
 
 module.exports = router;
