@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 
   // adds choice to modal
-  let optionId = 1
+  let optionId = 1;
   $('.new_choice').on('click', function(event) {
     event.preventDefault();
     const option =
@@ -18,33 +18,30 @@ $(document).ready(function() {
     `;
     $('.choices').append(option);
   });
-// Shows Modal
+  // Shows Modal
   $('#new_question').on('click', function(event) {
     event.preventDefault();
     const dialog = document.getElementById('modal');
     dialog.showModal();
   });
-// adds question to form
+  // adds question to form
   $('.add_question').on("submit", function(event) {
     event.preventDefault();
-    const question = $('#question').val()
+    const question = $('#question').val();
 
-    let optionString = ""
-    for (let i = 1; i <= optionId; i++){
-      if ($(`#unlisted${i}`).is(':checked')){
+    let optionString = "";
+    for (let i = 1; i <= optionId; i++) {
+      if ($(`#unlisted${i}`).is(':checked')) {
 
-        optionString += `<h4>${$(`#option${i}`).val()}</h4>`
+        optionString += `<h4>${$(`#option${i}`).val()}</h4>`;
       } else {
 
-        optionString += `<h5>${$(`#option${i}`).val()}</h5>`
+        optionString += `<h5>${$(`#option${i}`).val()}</h5>`;
       }
     }
 
-
-
-
     const option =
-       `<div class="displayed_question">
+      `<div class="displayed_question">
          <div class="displayed_question_title">
            <h2>${question}</h2>
          </div>
@@ -55,10 +52,10 @@ $(document).ready(function() {
         `;
     $('.displayed_questions').append(option);
 
-
+    dialog.close();
   });
-// adjusts description box height
-  $(".bio_field").on("keydown", function() {
+  // adjusts description box height
+  $("#bio textarea").on("keydown", function() {
     $(this).css("height", `${$(this).prop("scrollHeight")}px`);
   });
 

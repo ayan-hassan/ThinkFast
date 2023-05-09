@@ -11,67 +11,80 @@
 
 <body>
   <%- include('partials/_header') %>
-    <div class="page_content">
-      <!-- BIO FORM -->
-      <form id="bio" action="submit">
-        <div class="thumbnail_add" name="thumbnail"> &plus; thumbnail image</div>
-        <input class="bio_field" type="text" name="quiz_name" placeholder="New Quiz Name">
-        <select class="bio_field" name="category" id="" placeholder="category">
-          <option value="category example">category example</option>
-          <option value="category example">category example</option>
-          <option value="category example">category example</option>
-        </select>
-        <textarea class="bio_field" name="description" placeholder="Quiz Description"></textarea>
-        <input class="bio_field" type="text" name="time_limit" placeholder="time limit">
-        <label>
-          <p>Unlisted</p>
-          <input type="checkbox" id="unlisted">
-          <span class="check"></span>
-        </label>
-        <button>Save Draft</button>
-      </form>
+    <form action="/quiz/submit" method="post">
+      <div class="page_content">
+        <div id="bio">
+
+          <!-- BIO FORM -->
+          <!-- <form  action="submit"> -->
+          <!-- <div class="thumbnail_add" name="thumbnail"> &plus; thumbnail image</div> -->
+          <input class="bio_field" type="text" name="quiz_name" placeholder="New Quiz Name">
+          <select class="bio_field" name="category" id="" placeholder="category">
+            <option value="category example">category example</option>
+            <option value="category example">category example</option>
+            <option value="category example">category example</option>
+          </select>
+          <input class="bio_field" type="text" name="thumbnail" placeholder="Thumbnail url">
+          <textarea class="bio_field" name="description" placeholder="Quiz Description"></textarea>
+          <input class="bio_field" type="text" name="time_limit" placeholder="time limit">
+          <label>
+            <p>Unlisted</p>
+            <input type="checkbox" id="unlisted">
+            <span class="check"></span>
+          </label>
+          <button>Save Draft</button>
+        </div>
+        <div class="quiz_questions">
 
 
-      <!-- QUESTUIONS <AREA></AREA> -->
-      <form action="submit" class="quiz_questions">
-        <div class="displayed_questions">
+          <!-- QUESTUIONS <AREA></AREA> -->
+          <div class="displayed_questions">
+
+
+          </div>
+          <a class="add_question_button" href="" id="new_question"> &plus; Add a new question</a>
+          <button>Submit Quiz</button>
 
 
         </div>
-        <a class="add_question_button" href="" id="new_question"> &plus; Add a new question</a>
+      </div>
+    </form>
 
-      </form>
 
+    <!-- MODAL BOX -->
+    <div class="modal">
 
-        <!-- MODAL BOX -->
-        <dialog id="modal" class="modal">
-          <form class="add_question" method="post" >
+      <dialog id="modal" >
+        <form class="add_question" method="post">
+          <div>
+
             <input class="question" type="text" name="question" id="question" placeholder="New Question">
-            <div>
-              <table class="choices">
-                <tr>
-                  <th>Choice</th>
-                  <th>Correct?</th>
-                </tr>
-                <tr>
-                  <td><input class="choice" type="text" id="option1" placeholder="answer text"></td>
-                  <td>
-                    <label>
-                      <input type="radio" name="correct" id="unlisted">
-                      <span class="check"></span>
-                    </label>
-                  </td>
-                </tr>
-              </table>
-              <div>
-                <a href="" class="new_choice"> &plus; add option </a>
-              </div>
-              <button>submit question</button>
-          </form>
+          </div>
+          <div>
+            <table class="choices">
+              <tr>
+                <th>Choice</th>
+                <th>Correct?</th>
+              </tr>
+              <tr>
+                <td><input class="choice" type="text" id="option1" placeholder="answer text"></td>
+                <td>
+                  <label>
+                    <input type="radio" name="correct" id="unlisted">
+                    <span class="check"></span>
+                  </label>
+                </td>
+            </tr>
+          </table>
+          <div>
+            <a href="" class="new_choice"> &plus; add option </a>
+          </div>
+          <button>submit question</button>
+        </form>
 
-        </dialog>
-
+      </dialog>
     </div>
+
 </body>
 
 </html>
