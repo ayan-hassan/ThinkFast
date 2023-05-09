@@ -1,10 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
   <%- include('partials/_head') %>
+    <link rel="stylesheet" href="/styles/create.css">
+    <script>
+      $(document).ready(function() {
+        $('.new_choice').on('click', function(event) {
+          event.preventDefault();
+          const option =
+            `<tr>
+          <td><input class="choice" type="text" placeholder="answer text"></td>
+          <td><input type="checkbox"></td>
+          </tr>
+          `;
+          $('.choices').append(option);
+        });
 
-  <body>
-    <%- include('partials/_header') %>
-    <h1>Create</h1>
-  </body>
+        $('#new_question').on('click', function(event) {
+          event.preventDefault();
+          const dialog = document.getElementById('modal');
+          dialog.showModal();
+        });
+
+        $('.add_question').on("submit", function(event) {
+          event.preventDefault();
+          console.log("tarnation");
+          const option = `
+             <div class="displayed_question">
+               <div class="displayed_question_title">
+                 <h2>example question</h2>
+               </div>
+               <div class="displayed_question_questions">
+                <h5>example answer</h5>
+                <h5>example answer</h5>
+                <h5>example answer</h5>
+                <h5>example answer</h5>
+               </div>
+              </div>
+              `;
+          $('.displayed_questions').append(option);
+
+        });
+
+        $(".bio_field").on("keydown", function() {
+          $(this).css("height", `${$(this).prop("scrollHeight")}px`);
+        });
+
+      });
+
+
+    </script>
+    <!-- <script type="text/javascript" src="createQuiz.js"></script> -->
+
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+    <div class="page_content">
+      <form id="bio" action="submit">
+
+        <div class="thumbnail_add" name="thumbnail"> &plus; thumbnail image</div>
+
+        <input class="bio_field" type="text" name="quiz_name" placeholder="New Quiz Name">
+        <select class="bio_field" name="category" id="" placeholder="category">
+          <option value="category example">category example</option>
+          <option value="category example">category example</option>
+          <option value="category example">category example</option>
+        </select>
+        <textarea class="bio_field" name="description" placeholder="Quiz Description"></textarea>
+        <input class="bio_field" type="text" name="time_limit" placeholder="time limit">
+        <label>
+          <input type="checkbox" id="unlisted">
+          <span class="check"></span>
+        </label>
+        <button>Save Draft</button>
+
+      </form>
+      <form action="submit" class="quiz_questions">
+        <div class="displayed_questions">
+
+          <div class="displayed_question">
+            <div class="displayed_question_title">
+              <h2>example question</h2>
+            </div>
+            <div class="displayed_question_questions">
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+            </div>
+          </div>
+
+          <div class="displayed_question">
+            <div class="displayed_question_title">
+              <h2>example question</h2>
+            </div>
+            <div class="displayed_question_questions">
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+            </div>
+          </div>
+
+          <div class="displayed_question">
+            <div class="displayed_question_title">
+              <h2>example question</h2>
+            </div>
+            <div class="displayed_question_questions">
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+              <h5>example answer</h5>
+            </div>
+
+          </div>
+        </div>
+        <a class="add_question_button" href="" id="new_question"> &plus; Add a new question</a>
+
+
+
+
+        <dialog id="modal" class="modal">
+          <form class="add_question" method="dialog" action="submit">
+            <input class="question" type="text" placeholder="New Question">
+            <div>
+              <table class="choices">
+                <tr>
+                  <th>Choice</th>
+                  <th>Correct?</th>
+                </tr>
+                <tr>
+                  <td><input class="choice" type="text" placeholder="answer text"></td>
+                  <label>
+
+                    <td><input type="checkbox"></td>
+                  </label>
+                </tr>
+              </table>
+              <div>
+                <a href="" class="new_choice"> &plus; add option </a>
+              </div>
+              <button data-dismiss="#modal">submit question</button>
+          </form>
+
+        </dialog>
+      </form>
+
+    </div>
+</body>
+
 </html>
