@@ -34,6 +34,8 @@ const usersRoutes = require('./routes/users');
 const loginRoutes = require('./routes/login')
 const registerRoutes = require('./routes/register')
 const quizRoutes = require('./routes/quiz')
+
+const db = require('./db/queries/quiz');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -53,7 +55,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-
+app.get("/api/quiz/:id", db.getQuizById);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

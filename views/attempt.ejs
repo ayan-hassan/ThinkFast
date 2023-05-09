@@ -2,9 +2,46 @@
 <html lang="en">
 
   <%- include('partials/_head') %>
-
   <body>
     <%- include('partials/_header') %>
-    <h1>attempt</h1>
+    <header class="title-author-description">
+      <div class="title-author">
+
+        <div class="quiz-name"><%= quiz[0].title %></div>
+        <div class="quiz-author">By <%= quiz[0].name %></div>
+        <div class="description"><% quiz[0].description %></div>
+      </div>
+
+    </header>
+    <section>
+      <div class="start-time">
+          <button class="start">START!</button>
+        <div class="timer">00:00:00</div>
+      </div>
+      <main id="quiz-questions">
+          <% let questionCounter = 0 %>
+          <% let numOfOptions = 0 %>
+          <% let uniqueQuestions = [] %>
+          <% for (const options of quiz) { %>
+            <% if (!uniqueQuestions.includes(options.question_id)) { %>
+                <% uniqueQuestions.push(options.question_id) %>
+              <% } %>
+          <% } %>
+          <% for (let counter = 0; counter < uniqueQuestions.length; counter++) { %>
+              <div class="question"><%= quiz[questionCounter].question %></div>
+              <div class="options">
+            <% for (const option in quiz) { %>
+              <% if (quiz[option].question_id === counter + 1) { %>
+                <% numOfOptions++ %>
+                <div class="option"><%= quiz[option].option %></div>
+                <% } %>
+                <% } %>
+              <% questionCounter += numOfOptions %>
+              <% numOfOptions = 0 %>
+          <% } %>
+        </div>
+      </main>
+    </section>
+    <button class="submit-answers">Submit Responses</button>
   </body>
 </html>
