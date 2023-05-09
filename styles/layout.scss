@@ -4,3 +4,46 @@ body,
 html {
   margin: 0;
 }
+
+main.container {
+  background-color: #fdecf5;
+  padding-top: 350px;
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px;
+}
+
+.standard-quiz {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.buffer {
+  background-color: #fdecf5;
+}
+
+.category-filter {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 160px;
+  padding-bottom: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 11;
+  background-color: #fdecf5;
+}
+
+.category-filter button {
+  background-color: #8974ad;
+  border-radius: 8px;
+  font-size: 30px;
+  padding: 10px 15px 10px 15px;
+  margin: 0px 15px 0px 15px;
+}
+

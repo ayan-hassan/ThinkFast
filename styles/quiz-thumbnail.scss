@@ -1,0 +1,53 @@
+//------------------standard thumbnail for quiz---------------------//
+
+#quiz-thumbnail {
+  padding: 0px 15px 15px 15px;
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.quiz-image {
+  position: relative;
+  display: flex;
+}
+
+.quiz-name-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  color: #8974ad;
+  font-size: 2em;
+  text-transform: uppercase;
+  word-break: break-word;
+  font-weight:900;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 1.5);
+}
+
+footer {
+  background-color: #8974ad;
+  color: white;
+  padding: 5px;
+  margin: 0px;
+  text-transform: uppercase;
+}
+
+//--------------------featured quiz thumbnail----------------------//
+
+.featured-quiz {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.featured-overlay {
+  position: absolute;
+}
