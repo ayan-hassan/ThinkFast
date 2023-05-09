@@ -3,19 +3,16 @@
     <form action="/" method="GET">
       <button class="logo">ThinkFast</button>
     </form>
-    <!-- <span class="spacer"></span> -->
     <form action="/quiz/create" method="GET">
       <button type="submit">Create new quiz</button>
     </form>
   </span>
 
-  <!-- <%// if (!user.id) { %> -->
   <% if (!loggedIn) { %>
   <span class="header-elements">
     <form action="/login" method="GET">
       <button type="submit">Login</button>
     </form>
-    <!-- <span class="spacer"></span> -->
     <form action="/register" method="GET">
       <button type="submit">Register</button>
     </form>
