@@ -1,5 +1,4 @@
 body {
-  // min-height: 100vh;
   font-family: 'Nunito Sans', sans-serif;
   background-color: #fdecf5;
 }
@@ -29,15 +28,16 @@ form {
 }
 
 button {
-  font-size: 0.6em;
+  font-size: 0.5em;
   color: white;
   background-color: #5c548c;
+  border-radius: 10px;
 }
 
 .logo {
-  font-size: 60px;
+  font-size: 70px;
   font-family: 'Expletus Sans', cursive;
-  letter-spacing: -3px;
+  letter-spacing: -4px;
   color: rgb(35, 25, 66);
   background: none;
   border: none;
@@ -46,31 +46,5 @@ button {
 .header-elements {
   margin: 10px;
   display: flex;
-  // width: 100%;
+  align-items: center;
 }
-
-.create-popout {
-  display: flex;
-  // width: 10px
-}
-
-#new-quiz-header {
-  border-radius: 30%;
-  height: 50px;
-  width: 50px;
-  overflow: hidden;
-}
-
-#new-quiz-header:hover {
-  // border-radius: 25%;
-  transition: 0.4s ease;
-  width: 100%;
-}
-
-#new-quiz-header:hover:after {
-  content: "Create New Quiz";
-}
-
-// .spacer {
-//   padding: 10px;
-// }

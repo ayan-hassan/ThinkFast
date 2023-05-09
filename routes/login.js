@@ -1,5 +1,5 @@
 const express = require('express');
-const { pool } = require('../db/queries/users');
+const db = require('../db/connection');
 const router  = express.Router();
 const bcrypt = require('bcryptjs');
 const cookieSession = require('cookie-session');
@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
   WHERE email = $1
   `;
 
-  pool.query(queryString, [email])
+  db.query(queryString, [email])
     .then(query => {
       const user = query.rows[0];
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const { pool } = require('../db/queries/users');
+const db = require('../db/connection');
 const router  = express.Router();
 const bcrypt = require('bcryptjs');
 const cookieSession = require('cookie-session');
@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
   Values ($1, $2, $3);
   `;
 
-  pool.query(checkForUser, [email])
+  db.query(checkForUser, [email])
     .then(result => {
       if (result.rows.length === 0) {
         return;
@@ -57,9 +57,9 @@ router.post('/', (req, res) => {
         if (err) {
           throw Error;
         }
-        pool.query(addUser, [username, email, hash])
+        db.query(addUser, [username, email, hash])
         .then(() => {
-          pool.query(`SELECT id FROM users WHERE email = $1`, [email])
+          db.query(`SELECT id FROM users WHERE email = $1`, [email])
           .then(result => {
             const new_id = result.rows[0].id;
             req.session.user_id = new_id;

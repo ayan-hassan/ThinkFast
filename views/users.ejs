@@ -20,11 +20,14 @@
             <div class="column">HELLO</div> -->
             <% for (let quiz of userQuizzes) { %>
 
-              <article class="column">
+              <article class="quiz">
                 <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
                 <div class="quiz-info">
-                  <p><%= quiz.title %></p>
-                  <p><%= quiz.category %></p>
+                  <span><%= quiz.title %></span>
+                  <span><%= quiz.category %></span>
+                  <form action="/quiz/<%= quiz.id %>" method="GET">
+                    <button>Take quiz</button>
+                  </form>
                 </div>
               </article>
               <% } %>
@@ -39,8 +42,11 @@
             <article class="history-column">
               <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
               <div class="quiz-info">
-                <p><%= quiz.title %></p>
-                <p><%= quiz.category %></p>
+                <span><%= quiz.title %></span>
+                <span><%= quiz.category %></span>
+                <form action="/quiz/<%= quiz.id %>" method="GET">
+                  <button>Take quiz again</button>
+                </form>
               </div>
             </article>
           <% } %>

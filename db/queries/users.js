@@ -1,12 +1,4 @@
 const db = require('../connection');
-const { Pool } = require('pg');
-
-const pool = new Pool({
-  user: 'labber',
-  password: '123',
-  host: 'localhost',
-  database: 'midterm'
-});
 
 const queryUser = (id) => {
   const queryString = `
@@ -15,24 +7,24 @@ const queryUser = (id) => {
   WHERE id = ${id};
   `;
 
-  return pool.query(queryString);
+  return db.query(queryString);
 };
 
 const queryUserQuizzes = (id) => {
   const queryString = `
-  SELECT photo_url, title, categories.name AS category
+  SELECT photo_url, title, categories.name AS category, quizzes.id AS id
   FROM quizzes
   JOIN categories ON categories.id = category_id
   WHERE creator_id = ${id}
   ORDER BY created_at DESC;
   `;
 
-  return pool.query(queryString);
+  return db.query(queryString);
 };
 
 const queryUserHistory = (id) => {
   const queryString = `
-  SELECT photo_url, title, categories.name AS category
+  SELECT photo_url, title, categories.name AS category, quizzes.id AS id
   FROM user_quiz_taken
   JOIN quizzes ON quizzes.id = quiz_id
   JOIN categories ON categories.id = category_id
@@ -40,7 +32,7 @@ const queryUserHistory = (id) => {
   ORDER BY taken_at DESC;
   `;
 
-  return pool.query(queryString);
+  return db.query(queryString);
 }
 
-module.exports = { pool, queryUser, queryUserQuizzes, queryUserHistory };
+module.exports = { queryUser, queryUserQuizzes, queryUserHistory };

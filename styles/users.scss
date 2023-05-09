@@ -2,6 +2,10 @@ h2 {
   margin: 1em;
 }
 
+span {
+  padding: 0.4em;
+}
+
 .users {
   width: 100%;
   display: flex;
@@ -13,12 +17,7 @@ h2 {
   height: 35em;
 }
 
-.row {
-  display: flex;
-}
-
-.column {
-  flex: 50%;
+.quiz {
   display: flex;
   margin: 1em;
 }
@@ -40,39 +39,41 @@ h2 {
 .quiz-info {
   display: flex;
   flex-direction: column;
-  padding: 0 0.5em 0 0.5em;
-  background-color: orange;
+  align-items: start;
+  padding: 0.5em;
+  background-color: #ada2a8;
+  width: 10em;
+  height: 130px;
 }
 
 #profile {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: red;
+  align-items: center;
+  background-color: #8075bd;
   flex: 1;
 }
 
 #profile-img {
   margin: 4em;
   height: 10em;
+  width: auto;
 }
 
 #quizzes {
-  background-color: blue;
+  background-color: #5c548c;
   flex: 2;
   height: auto;
 }
 
 #user-quizzes {
-  display: grid;
-}
-
-#user-history {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #history {
-  background-color: yellow;
+  background-color: #8075bd;
   flex: 1;
   height: auto;
 }
