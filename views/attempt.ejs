@@ -23,8 +23,9 @@
           <% let numOfOptions = 0 %>
           <% let uniqueQuestions = [] %>
           <% for (const options of quiz) { %>
-            <% if (!uniqueQuestions.includes(options.question_id)) { %>
-                <% uniqueQuestions.push(options.question_id) %>
+            <%console.log(options.question)%>
+            <% if (!uniqueQuestions.includes(options.question)) { %>
+                <% uniqueQuestions.push(options.question) %>
               <% } %>
           <% } %>
           <% for (let counter = 0; counter < uniqueQuestions.length; counter++) { %>

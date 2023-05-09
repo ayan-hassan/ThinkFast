@@ -10,8 +10,10 @@
 // }
 
 $(() => {
+  $('#quiz-questions').hide();
   $('.start').on('click', function() {
     $('.start').remove();
+    $('#quiz-questions').show();
   });
 
 });
