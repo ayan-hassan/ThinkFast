@@ -5,9 +5,50 @@
 
   <body>
     <%- include('partials/_header') %>
-    <h1>Users</h1>
-    <button id="fetch-users">Fetch Users via AJAX</button>
-    <ul id="users"></ul>
+
+    <main class="users">
+      <section class="user-panel" id="profile">
+        <img src="http://sancarlosblog.agentfire2.com/wp-content/uploads/sites/455/2016/03/quiz-1024x1024.jpg" id="profile-img">
+        <h2><%= user.name %></h2>
+        <h3><%= user.email %></h3>
+      </section>
+      <section class="user-panel" id="quizzes">
+        <h2>My Quizzes</h2>
+        <section id="user-quizzes">
+            <% for (let quiz of userQuizzes) { %>
+
+              <article class="quiz">
+                <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
+                <div class="quiz-info">
+                  <span><%= quiz.title %></span>
+                  <span><%= quiz.category %></span>
+                  <form action="/quiz/<%= quiz.id %>" method="GET">
+                    <button>Take quiz</button>
+                  </form>
+                </div>
+              </article>
+              <% } %>
+        </section>
+      </section>
+      <section class="user-panel" id="history">
+        <h2>My History</h2>
+        <section id="user-history">
+
+          <% for (let quiz of userHistory) { %>
+            <article class="history-column">
+              <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
+              <div class="quiz-info">
+                <span><%= quiz.title %></span>
+                <span><%= quiz.category %></span>
+                <form action="/quiz/<%= quiz.id %>" method="GET">
+                  <button>Take quiz again</button>
+                </form>
+              </div>
+            </article>
+          <% } %>
+        </section>
+      </section>
+    </main>
   </body>
 
 </html>
