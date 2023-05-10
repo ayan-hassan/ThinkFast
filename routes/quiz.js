@@ -30,11 +30,27 @@ router.get('/results/:id', (req, res) => {
 });
 
 router.post('/submit', (req, res) => {
+  const quiz = req.body
+  console.log(quiz);
 
-console.log(req.body)
+
+
+
+
   res.redirect('/quiz/create')
   //later redirect to user/:id
 })
+
+// {
+//   quiz_name: 'Test Quiz',
+//   category: 'History',
+//   thumbnail: 'thumb',
+//   description: 'asdasd',
+//   time_limit: '33',
+//   question1: [ 'A', '1', '$%**%$', '2', '3' ],
+//   question2: [ 'B', '4', '5', '$%**%$', '6' ],
+//   question3: [ 'C', '7', '8', '9', '$%**%$' ]
+// }
 
 
 module.exports = router;
