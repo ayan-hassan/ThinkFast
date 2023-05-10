@@ -14,7 +14,6 @@ const getQuizById = (req, res) => {
     FROM quizzes
     WHERE quizzes.id = $1`,
     [id])
-    // .then(result => res.json(result.rows[0]))
     .then(result => console.log(result.rows[0]))
     .catch(err => null);
 };

@@ -18,31 +18,37 @@
           <button class="start">START!</button>
         <div class="timer">00:00:00</div>
       </div>
+      <input id="hidden" type="hidden" value="<%= quizId %>">
+
       <main id="quiz-questions">
+        <form id="quiz">
           <% let questionCounter = 0 %>
           <% let numOfOptions = 0 %>
           <% let uniqueQuestions = [] %>
           <% for (const options of quiz) { %>
-            <%console.log(options.question)%>
             <% if (!uniqueQuestions.includes(options.question)) { %>
                 <% uniqueQuestions.push(options.question) %>
               <% } %>
           <% } %>
           <% for (let counter = 0; counter < uniqueQuestions.length; counter++) { %>
-              <div class="question"><%= quiz[questionCounter].question %></div>
-              <div class="options">
+            <div class="question"><%= quiz[questionCounter].question %>
+
             <% for (const option in quiz) { %>
               <% if (quiz[option].question_id === counter + 1) { %>
-                <% numOfOptions++ %>
-                <div class="option"><%= quiz[option].option %></div>
+                  <% numOfOptions++ %>
+                  <input type="radio" id="option" name="<%= quiz[option].question_id %>" value="<%= quiz[option].option %>">
+                  <label for="option"><%= quiz[option].option %></label>
                 <% } %>
                 <% } %>
               <% questionCounter += numOfOptions %>
               <% numOfOptions = 0 %>
           <% } %>
-        </div>
+            </div>
+          </div>
+        </form>
       </main>
     </section>
-    <button class="submit-answers">Submit Responses</button>
+    <input class="submit-answers" type="submit" value="Submit">
   </body>
 </html>
+
