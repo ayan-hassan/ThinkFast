@@ -8,47 +8,6 @@ router.get('/', (req, res) => {
   //if logged in - redirect '/create' else redirect 'login'
 });
 
-router.post('/:id', (req, res) => {
-  let userResponse = req.body;
-  const id = req.params.id;
-
-  //query database for correct answers
-
-  db.query(`
-    SELECT option, is_correct
-    FROM quizzes
-    JOIN questions ON quiz_id = quizzes.id
-    JOIN choices ON question_id = questions.id
-    JOIN users ON creator_id = users.id
-    WHERE quizzes.id = $1
-    AND is_correct = 'true'`, [id])
-    .then(data => {
-      const answers = data.rows;
-      console.log(answers);
-
-      //compare answers to database
-
-      let totalCorrectAnswers = 0;
-      const checkCorrectAnswers = () => {
-        for (const index in answers) {
-          // console.log(correct);
-          let correctAnswer = answers[index].option;
-          // console.log(correctAnswer);
-          for (const response in userResponse) {
-            let userAnswer = userResponse[response];
-            // console.log(userResponse[response]);
-            if (correctAnswer === userAnswer) {
-              totalCorrectAnswers++;
-            }
-          }
-        }
-        console.log(totalCorrectAnswers);
-      };
-      checkCorrectAnswers();
-    });
-// .then(res.send(totalCorrectAnswers));//send quiz results to client side);
-});
-
 
 router.get('/create', (req, res) => {
   res.render('create');
@@ -66,7 +25,7 @@ router.get('/:id', (req, res) => {
     .then(data => {
       const quiz = data.rows;
       const templateVars = {quiz:quiz, quizId:id};
-      console.log(quiz);
+      // console.log(quiz);
       res.render('attempt', templateVars);
     })
     .catch(err => {
@@ -78,6 +37,44 @@ router.get('/:id', (req, res) => {
 
 router.get('/results/:id', (req, res) => {
   res.render('results');
+});
+
+router.post('/:id', (req, res) => {
+  let userResponse = req.body;
+  const id = req.params.id;
+
+  //query database for correct answers
+
+  return db.query(`
+    SELECT option, is_correct
+    FROM quizzes
+    JOIN questions ON quiz_id = quizzes.id
+    JOIN choices ON question_id = questions.id
+    JOIN users ON creator_id = users.id
+    WHERE quizzes.id = $1
+    AND is_correct = 'true'`, [id])
+    .then(data => {
+      const answers = data.rows;
+      console.log(answers);
+
+      //compare answers to database
+
+      let totalCorrectAnswers = 0;
+      for (const index in answers) {
+        let correctAnswer = answers[index].option;
+        // console.log(correctAnswer);
+        for (const response in userResponse) {
+          let userAnswer = userResponse[response];
+          // console.log(userResponse[response]);
+          if (correctAnswer === userAnswer) {
+            totalCorrectAnswers++;
+          }
+        }
+      }
+      console.log(totalCorrectAnswers);
+      return totalCorrectAnswers;
+    })
+    .then((response) => res.send({ response }));//send quiz results to client side
 });
 
 

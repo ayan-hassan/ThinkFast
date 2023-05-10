@@ -43,11 +43,7 @@ $(() => {
 
       $.post('/quiz/' + hiddenId, $('#quiz').serialize())
         //receives the data sent via res.send on the server side, then display results on the page with jquery
-        .then();
-
-      //retrieve quiz data using ajax
-
-      //compare submitted response to correct answer in database
+        .then(response => $('#results').append(response.response));
     }
   });
 });
