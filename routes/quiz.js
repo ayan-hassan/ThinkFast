@@ -5,7 +5,12 @@ const {insertQuiz, insertQuestions, insertOptions} = require('../db/queries/crea
 
 
 router.get('/', (req, res) => {
-  res.redirect('index');
+
+  if (req.session.user_id) {
+    res.redirect('/quiz/create')
+  }
+
+  res.redirect('/login');
   //if logged in - redirect '/create' else redirect 'login'
 });
 

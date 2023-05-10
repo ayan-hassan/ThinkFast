@@ -6,10 +6,4 @@ const getCategories = function() {
 
 }
 
-const displayTimeLimit = function() {
-  const time_limit =  //get timelimit from DB
-}
-
-
-
 module.exports = {getCategories}
