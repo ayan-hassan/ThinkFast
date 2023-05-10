@@ -1,13 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { Pool } = require('pg');
-const pool = new Pool({
-  user: 'labber',
-  password: 'labber',
-  host: 'localhost',
-  database: 'lightbnb'
-});
-
+const {getCategories} = require('../db/queries/quiz')
 
 
 router.get('/', (req, res) => {
@@ -15,20 +8,17 @@ router.get('/', (req, res) => {
   //if logged in - redirect '/create' else redirect 'login'
 });
 
-const getCatagories = function() {
- return pool
-  .query(`SELECT name FROM categories`)
-  .then((result) => {
-
-    return result.rows[0];
+router.get('/create', (req, res) => {
+  console.log(getCategories())
+  getCategories()
+  .then(result => {
+    const categories = result.rows
+    res.render('create', {categories});
   })
   .catch(err => console.error(err.message));
 
-}
 
-router.get('/create', (req, res) => {
-  console.log(getCatagories())
-  res.render('create');
+
 });
 
 router.get('/:id', (req, res) => {
@@ -39,9 +29,11 @@ router.get('/results/:id', (req, res) => {
   res.render('results');
 });
 
-router.get('/submit', (req, res) => {
+router.post('/submit', (req, res) => {
 
-  res.redirect('/users/:id')
+console.log(req)
+  res.redirect('/quiz/create')
+  //later redirect to user/:id
 })
 
 
