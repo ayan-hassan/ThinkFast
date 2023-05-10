@@ -31,7 +31,7 @@ router.get('/results/:id', (req, res) => {
 
 router.post('/submit', (req, res) => {
 
-console.log(req)
+console.log(req.body)
   res.redirect('/quiz/create')
   //later redirect to user/:id
 })

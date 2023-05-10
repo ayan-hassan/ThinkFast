@@ -22,7 +22,10 @@ $(document).ready(function() {
     </div>
 
     `;
-    const radioName = $(this).closest('div').attr("name");
+    const radioName = () => {
+      console.log($(this).parent().attr("name"));
+      return $(this).parent('.choice').attr("name");
+    }
 
     let div = document.createElement('div');
     div.className = 'choice';
@@ -36,13 +39,15 @@ $(document).ready(function() {
     input.for = `${++radioId}`;
 
     let label = document.createElement('label');
+    label.name = "test"
+
 
 
     let radio = document.createElement('input');
     radio.type = "radio";
     radio.id = `${radioId}`;
     radio.for = `option${optionId}`;
-    radio.name = radioName;
+    radio.name = `${questionId}`;
 
     let span = document.createElement('span');
     span.className = 'check';
