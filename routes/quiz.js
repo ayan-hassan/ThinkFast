@@ -21,7 +21,7 @@ router.get('/create', (req, res) => {
   };
 
 if(!loggedIn) {
-  res.redirect('/')
+  res.redirect('/login');
 }
   // console.log(getCategories())
   getCategories()
