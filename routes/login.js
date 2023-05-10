@@ -39,21 +39,21 @@ router.post('/', (req, res) => {
   `;
 
   db.query(queryString, [email])
-    .then(query => {
-      const user = query.rows[0];
-
-      bcrypt.compare(password, user.password)
-      .then((result) => {
-        if (result) {
-          req.session.user_id = user.id;
-          res.redirect(`/users/${user.id}`);
-        } else {
-          throw Error;
-        }
-      })
-      .catch(() => res.status(403).send("User not found"));
+    .then(result => {
+      return user = result.rows[0];
     })
-    .catch(() => res.status(403).send("Error fetching data"));
+    .then(user => {
+      return bcrypt.compare(password, user.password)
+    })
+    .then(result => {
+      if (result) {
+        req.session.user_id = user.id;
+        res.redirect(`/users/${user.id}`);
+      } else {
+        throw Error;
+      }
+    })
+    .catch(() => res.status(403).send("Error logging in, try again"));
 
 });
 
