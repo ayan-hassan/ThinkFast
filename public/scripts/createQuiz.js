@@ -17,7 +17,6 @@ $(document).ready(function() {
   ////////////////////////////////////////////////////////////////ensures correct name is used for options and radio buttons
     const childName = () => {
 
-      console.log($(this));
       const identifier = $(this).closest('.individual_question').find(".question").attr("name");
 
       return identifier
@@ -70,7 +69,6 @@ $(document).ready(function() {
   //////////////////////////////////////////////////////////////////////removes option from question
     $('.displayed_questions').on("click", '#remove', function(event) {
       event.preventDefault();
-      console.log($(this).closest("div"))
       $(this).parent(".choice").remove()
     });
 

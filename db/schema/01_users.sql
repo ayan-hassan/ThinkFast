@@ -23,14 +23,14 @@ CREATE TABLE quizzes (
   description TEXT,
   photo_url VARCHAR(255) DEFAULT 'https://t3.ftcdn.net/jpg/02/66/33/82/360_F_266338299_wTr8tcMGNmjFbEJVnrkKXrrsHABMlqXY.jpg',
   is_unlisted BOOLEAN,
-  created_at TIMESTAMP
+  created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE user_quiz_taken (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
-  taken_at TIMESTAMP
+  taken_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE favourites (
