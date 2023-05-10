@@ -1,11 +1,15 @@
 //------------------standard thumbnail for quiz---------------------//
 
-#quiz-thumbnail {
-  padding: 0px 15px 15px 15px;
+.quiz-thumbnail {
+  margin: 0px 15px 15px 15px;
   display: flex;
   flex-direction: column;
-  width: 33%;
+  width: 28%;
+}
 
+.quiz-thumbnail:hover {
+  box-shadow: 5px 5px #5c548c;
+  cursor: pointer;
 }
 
 img {
@@ -23,8 +27,9 @@ img {
   bottom: 0;
   left: 0;
   padding: 5px;
-  color: #8974ad;
-  font-size: 2em;
+  color: #ac90db;
+  background-color: #5c548c ;
+  font-size: 1em;
   text-transform: uppercase;
   word-break: break-word;
   font-weight:900;
@@ -41,12 +46,26 @@ footer {
 
 //--------------------featured quiz thumbnail----------------------//
 
+.container1 {
+  display: flex;
+  justify-content: center;
+}
+
 .featured-quiz {
   position: fixed;
   display: flex;
   flex-direction: column;
   // width: 40%;
-  height: 90%;
+  // height: 90%;
+}
+
+.featured-quiz:hover {
+  box-shadow: 10px 10px #5c548c;
+  cursor: pointer;
+}
+
+.featured-quiz .quiz-name-overlay {
+  font-size: 2.5em;
 }
 
 .featured-overlay {

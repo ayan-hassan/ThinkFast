@@ -33,24 +33,17 @@ router.get('/:id', (req, res) => {
   queryUser(userID)
     .then(result => {
       templateVars.user = result.rows[0];
-      return templateVars;
+      return queryUserQuizzes(userID);
     })
-    .then(templateVars => {
-      queryUserQuizzes(userID)
-        .then(result => {
-          templateVars.userQuizzes = result.rows;
-          return templateVars;
-        })
-        .then(templateVars =>{
-          queryUserHistory(userID)
-            .then(result => {
-              templateVars.userHistory = result.rows;
-              return templateVars;
-            })
-            .then(templateVars => {
-              res.render('users', templateVars);
-            })
-        })
+    .then(result => {
+      templateVars.userQuizzes = result.rows;
+      return queryUserHistory(userID);
+    })
+    .then(result => {
+      templateVars.userHistory = result.rows;
+    })
+    .then(() => {
+      res.render('users', templateVars);
     })
     .catch(err => console.log(err.message));
 

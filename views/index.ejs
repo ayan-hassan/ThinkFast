@@ -25,140 +25,32 @@
     </section>
     <main class="container">
       <div class="container1">
-        <aside class="featured-quiz">
+        <aside class="featured-quiz" id="<%= featured.id %>">
           <div class="featured-overlay"> featured quiz</div>
           <div class="quiz-image">
-            <img src="/images/default-quiz-thumbnail.jpeg">
-            <div class="quiz-name-overlay">quiz name</div>
+            <img src="<%= featured.photo_url %>">
+            <div class="quiz-name-overlay"><%= featured.title %></div>
           </div>
           <footer class="label">
-            <div>Category</div>
-            <div>Author</div>
+            <div><%= featured.category %></div>
+            <div><%= featured.author %></div>
           </footer>
         </aside>
       </div>
       <div class="container2">
         <div class="standard-quiz">
-          <article id="quiz-thumbnail">
+          <% for (let quiz of quizzes) { %>
+          <article class="quiz-thumbnail" id="<%= quiz.id %>">
             <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
+              <img src="<%= quiz.photo_url %>">
+              <div class="quiz-name-overlay"><%= quiz.title %></div>
             </div>
             <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
+              <div><%= quiz.category %></div>
+              <div><%= quiz.author %></div>
             </footer>
           </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
-          <article id="quiz-thumbnail">
-            <div class="quiz-image">
-              <img src="/images/default-quiz-thumbnail.jpeg">
-              <div class="quiz-name-overlay">quiz name</div>
-            </div>
-            <footer class="label">
-              <div>Category</div>
-              <div>Author</div>
-            </footer>
-          </article>
+          <% } %>
         </div>
       </div>
 
