@@ -77,7 +77,7 @@ router.post('/submit', (req, res) => {
     })
 
 
-  res.redirect('/quiz/create')
+  res.redirect(`/users/${req.session.user_id}`);
   //later redirect to user/:id
 })
 
