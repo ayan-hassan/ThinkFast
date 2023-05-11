@@ -1,21 +1,9 @@
-const { Pool } = require('pg');
+const db = require('../connection');
 
-const pool = new Pool({
-  user: 'ayanhassan',
-  host: 'localhost',
-  database: 'midterm'
-});
+const getCategories = function() {
+ return db
+  .query(`SELECT name FROM categories`)
 
-const getQuizById = (req, res) => {
-  const id = req.params.id;
-  return pool
-    .query(`
-    SELECT *
-    FROM quizzes
-    WHERE quizzes.id = $1`,
-    [id])
-    .then(result => console.log(result.rows[0]))
-    .catch(err => null);
-};
+}
 
-module.exports = {getQuizById};
+module.exports = {getCategories}

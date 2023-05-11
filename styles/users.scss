@@ -1,0 +1,83 @@
+h2 {
+  margin: 1em;
+}
+
+span {
+  padding: 0.4em;
+}
+
+.users {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-panel {
+  margin: 1em;
+  height: 35em;
+}
+
+.quiz {
+  display: flex;
+  margin: 1em;
+}
+
+.history-column {
+  display: flex;
+  margin: 1em;
+}
+
+.quiz-photo {
+  width: 10em;
+}
+
+.user-history {
+  margin: 1em;
+  display: flex;
+}
+
+.quiz-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 0.5em;
+  background-color: #ada2a8;
+  width: 10em;
+  height: 130px;
+}
+
+.quiz-info > form {
+  font-size: 1.5em;
+}
+
+#profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #8075bd;
+  flex: 1;
+}
+
+#profile-img {
+  margin: 4em;
+  height: 10em;
+  width: auto;
+}
+
+#quizzes {
+  background-color: #5c548c;
+  flex: 2;
+  height: auto;
+}
+
+#user-quizzes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#history {
+  background-color: #8075bd;
+  flex: 1;
+  height: auto;
+}

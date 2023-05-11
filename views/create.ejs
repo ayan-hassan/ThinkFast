@@ -1,10 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%- include('partials/_head') %>
+<head>
 
-  <body>
-    <%- include('partials/_header') %>
-    <h1>Create</h1>
-  </body>
+  <%- include('partials/_head') %>
+    <link rel="stylesheet" href="/styles/create.css">
+
+    <script type="text/javascript" src="/scripts/createQuiz.js"></script>
+
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+    <form id="quizForm" action="submit" method="post">
+      <div class="page_content">
+        <div id="bio">
+
+          <!-- BIO FORM -->
+          <!-- <form  action="submit"> -->
+          <!-- <div class="thumbnail_add" name="thumbnail"> &plus; thumbnail image</div> -->
+          <input class="bio_field" type="text" name="quiz_name" placeholder="New Quiz Name">
+          <select class="bio_field" name="category" id="" >
+            <option value="" disabled selected hidden>Choose category</option>
+
+            <% for ( category in categories) { %>
+              <option >
+                <%= categories[category].name %>
+              </option>
+              <%}%>
+
+          </select>
+          <input class="bio_field" type="text" name="thumbnail" placeholder="Thumbnail url">
+          <textarea class="bio_field" name="description" placeholder="Quiz Description"></textarea>
+          <label for="time_limit">
+
+            <p>Time Limit</p>
+            <input  type="number" class="bio_field" type="text" name="time_limit" placeholder="time limit">
+          </label>
+          <label for="unlisted">
+            <input type="checkbox" id="unlisted" name="unlisted">
+            <p>Unlisted</p>
+            <span class="check"></span>
+          </label>
+          <button>Save Draft</button>
+          <button>Submit Quiz</button>
+        </div>
+        <div class="quiz_questions">
+
+
+          <!-- QUESTUIONS <AREA></AREA> -->
+          <div class="displayed_questions">
+
+            <div id="question1" class="individual_question">
+
+              <div>
+                <input class="question" type="text" name="question1" id="question" placeholder="New Question">
+              </div>
+
+              <div>
+                <div class="choices">
+
+                  <div class="choice" name="test">
+
+                    <input  type="text" id="1" name="question1" placeholder="answer text">
+
+                    <label>
+                      <input type="radio" name="question1" id="unlisted" value="$%**%$">
+                      <span class="check"></span>
+                    </label>
+                    <p>Correct</p>
+
+                    <a href="" id="remove">&times</a>
+                  </div>
+
+                </div>
+                <a href="" class="new_choice"> &plus; add option </a>
+
+              </div>
+
+            </div>
+          </div>
+          <div>
+            <a class="add_question_button" href="" id="new_question"> &plus; Add a new question</a>
+          </div>
+    </form>
+
+
+
+
+    </div>
+
+</body>
+
 </html>
+<!-- MODAL BOX -->
+
+<!-- <button>submit question</button> -->
