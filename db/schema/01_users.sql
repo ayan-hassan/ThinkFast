@@ -1,6 +1,6 @@
 -- Drop and recreate Users table (Example)
 
-DROP TABLE IF EXISTS users, categories, quizzes, user_quiz_taken, favourites, questions, choices, user_quiz_taken_details CASCADE;
+DROP TABLE IF EXISTS users, categories, quizzes, user_quiz_taken, favourites, questions, choices CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -31,6 +31,8 @@ CREATE TABLE user_quiz_taken (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
+  user_score INTEGER,
+  max_score INTEGER,
   taken_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -50,12 +52,4 @@ CREATE TABLE choices (
   option VARCHAR(255),
   question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
   is_correct BOOLEAN DEFAULT false
-);
-
-CREATE TABLE user_quiz_taken_details (
-  id SERIAL PRIMARY KEY NOT NULL,
-  user_quiz_taken_id INTEGER REFERENCES user_quiz_taken(id) ON DELETE CASCADE,
-  question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
-  user_answer INTEGER REFERENCES choices(id) ON DELETE CASCADE,
-  correct_answer INTEGER REFERENCES choices(id) NOT NULL
 );
