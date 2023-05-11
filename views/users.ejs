@@ -12,39 +12,45 @@
         <h2><%= user.name %></h2>
         <h3><%= user.email %></h3>
       </section>
-      <section class="user-panel" id="quizzes">
+      <section class="user-quizzes" id="quizzes">
         <h2>My Quizzes</h2>
         <section id="user-quizzes">
             <% for (let quiz of userQuizzes) { %>
+
+<a href="/quiz/<%= quiz.id %>">
+
+  <article class="quiz">
+    <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
+    <div class="quiz-info">
+      <span><%= quiz.title %></span>
+      <span><%= quiz.category %></span>
+      <!-- <form action="/quiz/<%= quiz.id %>" method="GET">
+        <button>Take quiz</button>
+      </form> -->
+    </div>
+  </article>
+</a>
+              <% } %>
+        </section>
+      </section>
+      <section class="user-history" id="history">
+        <h2>My History</h2>
+        <section id="user-history">
+
+          <% for (let quiz of userHistory) { %>
+            <a href="/quiz/<%= quiz.id %>">
 
               <article class="quiz">
                 <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
                 <div class="quiz-info">
                   <span><%= quiz.title %></span>
                   <span><%= quiz.category %></span>
-                  <form action="/quiz/<%= quiz.id %>" method="GET">
+                  <!-- <form action="/quiz/<%= quiz.id %>" method="GET">
                     <button>Take quiz</button>
-                  </form>
+                  </form> -->
                 </div>
               </article>
-              <% } %>
-        </section>
-      </section>
-      <section class="user-panel" id="history">
-        <h2>My History</h2>
-        <section id="user-history">
-
-          <% for (let quiz of userHistory) { %>
-            <article class="history-column">
-              <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
-              <div class="quiz-info">
-                <span><%= quiz.title %></span>
-                <span><%= quiz.category %></span>
-                <form action="/quiz/<%= quiz.id %>" method="GET">
-                  <button>Take quiz again</button>
-                </form>
-              </div>
-            </article>
+            </a>
           <% } %>
         </section>
       </section>

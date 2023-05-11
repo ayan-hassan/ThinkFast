@@ -165,6 +165,7 @@ router.post('/submit', (req, res) => {
         }
 
       }
+      console.log("Query finished")
     })
     .catch(err => console.log(err));
 
