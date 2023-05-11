@@ -20,11 +20,11 @@
           <!-- <form  action="submit"> -->
           <!-- <div class="thumbnail_add" name="thumbnail"> &plus; thumbnail image</div> -->
           <input class="bio_field" type="text" name="quiz_name" placeholder="New Quiz Name">
-          <select class="bio_field" name="category" id="" >
+          <select class="bio_field" name="category" id="">
             <option value="" disabled selected hidden>Choose category</option>
 
             <% for ( category in categories) { %>
-              <option >
+              <option>
                 <%= categories[category].name %>
               </option>
               <%}%>
@@ -35,14 +35,14 @@
           <label for="time_limit">
 
             <p>Time Limit</p>
-            <input  type="number" class="bio_field" type="text" name="time_limit" placeholder="time limit">
+            <input type="number" class="bio_field" type="text" name="time_limit" placeholder="time limit">
           </label>
           <label for="unlisted">
             <input type="checkbox" id="unlisted" name="unlisted">
             <p>Unlisted</p>
             <span class="check"></span>
           </label>
-          <button>Save Draft</button>
+
           <button>Submit Quiz</button>
         </div>
         <div class="quiz_questions">
@@ -52,17 +52,20 @@
           <div class="displayed_questions">
 
             <div id="question1" class="individual_question">
+              <container class="x_holder">
+
+                <a href="" id="remove">&times;</a>
+              </container>
 
               <div>
                 <input class="question" type="text" name="question1" id="question" placeholder="New Question">
               </div>
-
               <div>
                 <div class="choices">
 
                   <div class="choice" name="test">
 
-                    <input  type="text" id="1" name="question1" placeholder="answer text">
+                    <input type="text" id="1" name="question1" placeholder="answer text">
 
                     <label>
                       <input type="radio" name="question1" id="unlisted" value="$%**%$">
@@ -81,7 +84,7 @@
             </div>
           </div>
           <div>
-            <a class="add_question_button" href="" id="new_question"> &plus; Add a new question</a>
+            <a class="add_question_button" href="" id="new_question"> &plus;<p> Add a new question</p> </a>
           </div>
     </form>
 

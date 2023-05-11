@@ -36,8 +36,6 @@ if(!loggedIn) {
   })
   .catch(err => console.error(err.message));
 
-
-
 });
 
 router.get('/:id', (req, res) => {

@@ -10,15 +10,19 @@ main.container {
   padding-top: 280px;
   width: 95%;
   margin: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
   gap: 0px;
+  display: flex;
+  justify-content: center;
 }
 
 .standard-quiz {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
+  height: 90%;
 }
 
 .category-filter {
@@ -42,4 +46,84 @@ main.container {
   padding: 10px 15px 10px 15px;
   margin: 5px 15px 5px 15px;
 }
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  position: fixed;
+  left: 35%;
+  top: 30%;
+  background-color: #c1a9b5;
+  height: 400px;
+  width: 600px;
+  border-radius: 25px;
+  box-shadow: 5px 5px 9px rgba(94, 104, 121, 1);
+
+
+}
+
+.modal button {
+width: 30%fit-content;
+font-size: 24pt;
+margin: 20px 0 0 ;
+}
+
+.modal_body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  // border: solid;
+  height: 100%;
+
+}
+
+.modal h2 {
+  margin: 0;
+}
+
+.modal h1 {
+  margin: 30px;
+}
+
+.modal .logo{
+  margin: 0 20px;
+  font-size: 30pt;
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+
+}
+.container1 {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+
+  margin: 15px;
+}
+.container2 {
+  display: flex;
+  flex: 2;
+  justify-content: center;
+
+}
+
+.featured-quiz {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 15px;
+  margin: 15px 15px 15px 15px;
+  transition: 0.2s;
+  // width: 40%;
+  // height: 90%;
+}
+
 

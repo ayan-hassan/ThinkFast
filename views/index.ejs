@@ -1,59 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%- include('partials/_head') %>
+<%- include('partials/_head') %>
 
   <body>
     <%- include('partials/_header') %>
-    <section class="category-filter">
-      <div class="cat">
-        <button>Science</button>
-        <button>History</button>
-        <button>Movies</button>
-        <button>Music</button>
-        <button>Pop Culture</button>
-        <button>Video Games</button>
-      </div>
-      <div class="cat">
-        <button>Geography</button>
-        <button>Sports</button>
-        <button>Language</button>
-        <button>Books</button>
-        <button>Food</button>
-        <button>Miscellaneous</button>
-      </div>
-    </section>
-    <main class="container">
-      <div class="container1">
-        <aside class="featured-quiz" id="<%= featured.id %>">
-          <div class="featured-overlay"> featured quiz</div>
-          <div class="quiz-image">
-            <img src="<%= featured.photo_url %>">
-            <div class="quiz-name-overlay"><%= featured.title %></div>
-          </div>
-          <footer class="label">
-            <div><%= featured.category %></div>
-            <div><%= featured.author %></div>
-          </footer>
-        </aside>
-      </div>
-      <div class="container2">
-        <div class="standard-quiz">
-          <% for (let quiz of quizzes) { %>
-          <article class="quiz-thumbnail" id="<%= quiz.id %>">
+      <section class="category-filter">
+        <div class="cat">
+          <button>Science</button>
+          <button>History</button>
+          <button>Movies</button>
+          <button>Music</button>
+          <button>Pop Culture</button>
+          <button>Video Games</button>
+        </div>
+        <div class="cat">
+          <button>Geography</button>
+          <button>Sports</button>
+          <button>Language</button>
+          <button>Books</button>
+          <button>Food</button>
+          <button>Miscellaneous</button>
+        </div>
+      </section>
+      <main class="container">
+        <div class="container1">
+          <aside class="featured-quiz" id="<%= featured.id %>">
+            <div class="featured-overlay"> featured quiz</div>
             <div class="quiz-image">
-              <img src="<%= quiz.photo_url %>">
-              <div class="quiz-name-overlay"><%= quiz.title %></div>
+              <img src="<%= featured.photo_url %>">
+              <div class="quiz-name-overlay">
+                <%= featured.title %>
+              </div>
             </div>
             <footer class="label">
-              <div><%= quiz.category %></div>
-              <div><%= quiz.author %></div>
+              <div>
+                <%= featured.category %>
+              </div>
+              <div>
+                <%= featured.author %>
+              </div>
             </footer>
-          </article>
-          <% } %>
+          </aside>
         </div>
-      </div>
+        <div class="container2">
+          <div class="standard-quiz">
+            <% for (let quiz of quizzes) { %>
+              <article class="quiz-thumbnail" id="<%= quiz.id %>">
+                <div class="quiz-image">
+                  <img src="<%= quiz.photo_url %>">
+                  <div class="quiz-name-overlay">
+                    <%= quiz.title %>
+                  </div>
+                </div>
+                <footer class="label">
+                  <div>
+                    <%= quiz.category %>
+                  </div>
+                  <div>
+                    <%= quiz.author %>
+                  </div>
+                </footer>
+              </article>
+              <% } %>
+          </div>
+        </div>
 
-    </main>
+        <!-- <article  class="modal" id="modal">
+          <div class="modal_head">
+            <h1 class="logo">ThinkFast</h1>
+          </div>
+          <div class="modal_body">
+            <h1>Quiz Name</h1>
+            <h4>See how [user_name] did on this quiz!</h4>
+            <h2>user Score X/Y</h2>
+            <h2>100%</h2>
+            <button> Try this quiz</button>
+          </div>
+
+        </article> -->
+
+
+      </main>
   </body>
+
 </html>

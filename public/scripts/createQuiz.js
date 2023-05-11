@@ -69,7 +69,7 @@ $(document).ready(function() {
   //////////////////////////////////////////////////////////////////////removes option from question
     $('.displayed_questions').on("click", '#remove', function(event) {
       event.preventDefault();
-      $(this).parent(".choice").remove()
+      $(this).closest("div").remove()
     });
 
  ///////////////////////////////////////////////////////////////////// // adds question to form
@@ -82,6 +82,12 @@ $(document).ready(function() {
 
 <div id="question${questionId}" class="individual_question">
 
+<container class="x_holder">
+
+  <a href="" id="remove">&times;</a>
+</container>
+
+
 <div>
 <input class="question" type="text" name="question${++questionName}"  placeholder="New Question">
 </div>
@@ -89,6 +95,7 @@ $(document).ready(function() {
 <div >
   <div class="choices">
  <div class="choice">
+
   <input  type="text"  id="${optionId}" name= "question${questionName}" placeholder="answer text">
 
     <label>
@@ -113,6 +120,7 @@ $(document).ready(function() {
   $("#bio textarea").on("keydown", function() {
     $(this).css("height", `${$(this).prop("scrollHeight")}px`);
   });
+
 
 
 ///////////////////////////////////////////////////////////////Function to parse the DOM response adn run SQL inserts
