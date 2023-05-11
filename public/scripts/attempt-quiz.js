@@ -34,6 +34,8 @@ $(() => {
     } else {
       // All questions answered sooo...
       console.log('All questions answered.');
+      $('.start-time').remove();
+      $('.submit-answers').remove();
 
       //---------check if answers correct or not----------//
 

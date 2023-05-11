@@ -1,20 +1,15 @@
 .title-author-description {
-  width: 90%;
-  margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background: none;
   margin-top: 150px;
   justify-content: center;
   gap: 5%;
-  align-self: flex-start;
 }
 
 .quiz-name {
-  display: flex;
   font-weight: 900;
   text-transform: uppercase;
-  align-self: flex-start;
   color: #5c548c
 }
 
@@ -23,26 +18,16 @@
   color: #8974ad;
 }
 
-.title-author {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .description {
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  height: 30%;
-  font-size:50px;
-  word-break: break-word;
+  font-size: xx-large;
   color: #8974ad;
+  word-break: break-word;
 }
 
 .start-time {
   display: flex;
   justify-content: center;
-  padding-top: 300px;
+  padding-top: 320px;
   gap: 25px;
   padding-bottom: 5%
 }
@@ -79,6 +64,7 @@
 #quiz-questions {
   width: 77%;
   margin: 0 auto;
+  margin-top: 140px;
   font-size: 1em;
 }
 
@@ -135,4 +121,9 @@ input.submit-answers:hover {
 #quiz {
   display: flex;
   flex-direction: column;
+}
+
+#results {
+  color: #5c548c;
+  text-align: center;
 }
