@@ -23,6 +23,7 @@ CREATE TABLE quizzes (
   description TEXT,
   photo_url VARCHAR(255) DEFAULT 'https://t3.ftcdn.net/jpg/02/66/33/82/360_F_266338299_wTr8tcMGNmjFbEJVnrkKXrrsHABMlqXY.jpg',
   is_unlisted BOOLEAN,
+  time_limit INTEGER DEFAULT -1,
   created_at TIMESTAMP DEFAULT NOW()
 );
 

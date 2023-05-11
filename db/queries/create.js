@@ -12,8 +12,8 @@ const insertQuiz = function(quiz, user_id) {
   `;
 
   const queryString = `
-  INSERT INTO quizzes (title, category_id, description, photo_url, is_unlisted, creator_id)
-  VALUES ($1, $2, $3, $4, $5, $6)
+  INSERT INTO quizzes (title, category_id, description, photo_url, is_unlisted, creator_id, time_limit)
+  VALUES ($1, $2, $3, $4, $5, $6, $7)
   RETURNING id;
   `;
 
@@ -24,7 +24,7 @@ const insertQuiz = function(quiz, user_id) {
       const category_id = result.rows[0];
       console.log("category id", category_id)
       const is_unlisted = quiz.unlisted? true : false;
-      return db.query(queryString, [quiz.quiz_name, category_id.id, quiz.description, quiz.thumbnail, is_unlisted, user_id]);
+      return db.query(queryString, [quiz.quiz_name, category_id.id, quiz.description, quiz.thumbnail, is_unlisted, user_id, quiz.time_limit]);
     })
 
 };

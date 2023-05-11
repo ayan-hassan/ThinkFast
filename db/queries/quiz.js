@@ -6,8 +6,10 @@ const getCategories = function() {
 
 }
 
-const publishQuiz = function(obj) {
-
+const displayTimeLimit = function() {
+  const time_limit =  //get timelimit from DB
 }
+
+
 
 module.exports = {getCategories}
