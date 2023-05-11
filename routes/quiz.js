@@ -64,8 +64,6 @@ router.get('/:id', (req, res) => {
       }
       // if question_id doesn't exist
       questionGroup[question.question_id].choices.push(question.option);
-
-
     }
     console.log(questionGroup);
     return questionGroup;
@@ -73,7 +71,7 @@ router.get('/:id', (req, res) => {
 
   const id = req.params.id;
   db.query(`
-  SELECT users.name, quizzes.id AS quiz_id, quizzes.title, quizzes.description, questions.*, choices.*
+  SELECT users.name, quizzes.id AS quiz_id, quizzes.title, quizzes.description, quizzes.time_limit, questions.*, choices.*
   FROM quizzes
   JOIN questions ON quiz_id = quizzes.id
   FULL OUTER JOIN choices ON question_id = questions.id

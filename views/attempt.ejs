@@ -2,6 +2,20 @@
 <html lang="en">
 
   <%- include('partials/_head') %>
+  <% const seconds = quiz[0].time_limit %>
+  <div class="timer"><%= quiz[0].time_limit %></div>
+  <script>
+    $(() => {
+      const settime = function() {
+        const inputSeconds = parseInt($('.timer').html());
+        const minutes = Math.floor(inputSeconds / 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+        const seconds = (inputSeconds % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+        $("#minutes").html(minutes);
+        $("#seconds").html(seconds);
+      };
+      settime();
+    })
+  </script>
   <body>
     <%- include('partials/_header') %>
     <main class="results-page">
@@ -11,20 +25,29 @@
         <div class="description"><%= quiz[0].description %></div>
     </section>
 
+
       <div class="start-time">
           <button class="start">START!</button>
-        <div class="timer">00:00:00</div>
+        <!-- <div class="timer"><% quiz[0].time_limit %></div> -->
+        <div class="actualTimer">
+          <div id="minutes"></div>
+          :
+          <div id="seconds"></div>
+        </div>
       </div>
       <input id="hidden" type="hidden" value="<%= quizId %>">
 
       <section id="quiz-questions">
         <form id="quiz">
               <% for (const option in questions) { %>
-                <div class="question"><%= questions[option].question %>
+                <div class="quizQuestionAttempt"><%= questions[option].question %>
                     <% for (const choice of questions[option].choices) { %>
-                      <input type="radio" id="option" name="<%= questions[option].question_id %>" value="<%= choice %>">
-                      <label class="optionRadio" for="option"><%= choice %></label>
-                      <%console.log(choice)%>
+                      <label id="optionRadio">
+                        <input type="radio" id="option" name="<%= questions[option].question_id %>" value="<%= choice %>">
+                        <span class="choiceOption"><%= choice %></span>
+                      </label>
+
+
                       <% } %>
                 <% } %>
             </div>

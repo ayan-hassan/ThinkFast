@@ -1,12 +1,13 @@
 .title-author-description {
-  // display: flex;
-  // flex-direction: column;
+  display: flex;
+  flex-direction: column;
   position: fixed;
   background: none;
   padding: 20px 0;
   justify-content: center;
   gap: 5%;
   background-color: #fdecf5;
+  text-align: center;
 }
 
 .results-page {
@@ -19,6 +20,7 @@
 .quiz-name {
   font-size: 3em;
   font-weight: 900;
+  font-style: bold;
   text-transform: uppercase;
   color: #5c548c
 }
@@ -32,12 +34,25 @@
   font-size: xx-large;
   color: #8974ad;
   word-break: break-word;
+  text-align: center;
 }
 
 .start-time {
   display: flex;
   justify-content: space-around;
   margin-top: 180px;
+}
+
+.actualTimer {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  font-size: 40px;
+  background-color: #efd9f2;
+  color: #8974ad;
+  padding: 2px 60px 2px 60px;
+  border-radius: 10px;
+  margin-left: 5px;
 }
 
 
@@ -47,6 +62,8 @@
   background-color: #8974ad;
   border: none;
   padding: 2px 60px 2px 60px;
+  border-radius: 10px;
+  margin-right: 5px;
 }
 
 .start-time button:hover {
@@ -54,12 +71,7 @@
 }
 
 .timer {
-  // width: 25%;
-  text-align: center;
-  font-size: 40px;
-  background-color: #efd9f2;
-  color: #8974ad;
-  padding: 2px 60px 2px 60px;
+  visibility: hidden;
 }
 
 .timer.fixOnScroll {
@@ -70,9 +82,11 @@
   width: 77%;
   margin: 0 auto;
   font-size: 1em;
+  height: 100%;
+  margin-bottom: 20px;
 }
 
-.question {
+.quizQuestionAttempt {
   font-size: xx-large;
   text-align: center;
   margin-bottom: 15px;
@@ -81,7 +95,8 @@
 
 #option {
   display: flex;
-  width: 10%;
+  flex-direction: row;
+  width: 30%;
   margin: 0 auto;
   background: #efd9f2;
   font-size: x-large;
@@ -91,22 +106,36 @@
   gap: 10px;
 }
 
-.optionRadio:hover {
+#optionRadio:hover {
   background-color: #8974ad;
   color: #fff;
 }
 
-
-.optionRadio {
-  font-size: x-large;
-  background-color: #efd9f2;
+#optionRadio:active {
+  background-color: #8974ad;
+  color: #fff;
 }
 
-// input[type="radio"] {
-//   // -webkit-appearance: none;
-//   // visibility: hidden;
-//   display: none;
-// }
+#optionRadio {
+  font-size: x-large;
+  background-color: #efd9f2;
+  width: 60px;
+}
+
+input[type="radio"] {
+  // -webkit-appearance: none;
+  visibility: hidden;
+  display: none;
+}
+
+input[type="radio"]:checked#option {
+  background: #5c548c;
+}
+
+.choiceOption {
+  font-size: 27px;
+  padding: 20px;
+}
 
 input.submit-answers {
   position: absolute;
@@ -152,3 +181,6 @@ form {
   margin-bottom: 20px;
   font-size: xx-large;
 }
+
+//--------------------------------//
+
