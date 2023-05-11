@@ -78,6 +78,7 @@ router.post('/submit', (req, res) => {
 
       }
     })
+    .catch(err => console.log(err));
 
 
   res.redirect(`/users/${req.session.user_id}`);
