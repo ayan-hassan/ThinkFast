@@ -77,6 +77,7 @@ router.post('/submit', (req, res) => {
         }
 
       }
+      console.log("Query finished")
     })
 
 
