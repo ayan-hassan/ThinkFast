@@ -86,7 +86,7 @@ app.get('/', (req, res) => {
     .then(() => {
       res.render('index', templateVars);
     })
-
+    .catch(err => console.log(err));
 
   });
 

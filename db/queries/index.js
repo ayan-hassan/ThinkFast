@@ -37,6 +37,7 @@ const getRandomQuiz = () => {
     .then(randomNum => {
       return db.query(queryString, [randomNum])
     })
+    .catch(err => console.log(err));
 };
 
 getRandomQuiz();

@@ -41,11 +41,13 @@ router.post('/', (req, res) => {
 
   const addUser = `
   INSERT INTO users (name, email, password)
-  Values ($1, $2, $3);
+  Values ($1, $2, $3)
+  RETURNING id;
   `;
 
   db.query(checkForUser, [email])
     .then(result => {
+      console.log(result.rows);
       if (result.rows.length === 0) {
         return;
       } else {
@@ -53,20 +55,17 @@ router.post('/', (req, res) => {
       }
     })
     .then(() => {
-      bcrypt.hash(password, 10, (err, hash) => {
-        if (err) {
-          throw Error;
-        }
-        db.query(addUser, [username, email, hash])
-        .then(() => {
-          db.query(`SELECT id FROM users WHERE email = $1`, [email])
-          .then(result => {
-            const new_id = result.rows[0].id;
-            req.session.user_id = new_id;
-            res.redirect(`/users/${new_id}`);
-          })
-        })
-      })
+      return bcrypt.hash(password, 10)
+    })
+    .then(result => {
+      const hash = result;
+      return db.query(addUser, [username, email, hash])
+    })
+    .then(result => {
+      console.log(result.rows);
+      const new_id = result.rows[0].id;
+      req.session.user_id = new_id;
+      res.redirect(`/users/${new_id}`);
     })
     .catch(() => res.status(403).send("Cannot create new user"));
 });
