@@ -69,7 +69,7 @@ $(document).ready(function() {
   //////////////////////////////////////////////////////////////////////removes option from question
     $('.displayed_questions').on("click", '#remove', function(event) {
       event.preventDefault();
-      $(this).parent(".choice").remove()
+      $(this).closest("div").remove()
     });
 
  ///////////////////////////////////////////////////////////////////// // adds question to form
@@ -82,6 +82,12 @@ $(document).ready(function() {
 
 <div id="question${questionId}" class="individual_question">
 
+<container class="x_holder">
+
+  <a href="" id="remove">&times;</a>
+</container>
+
+
 <div>
 <input class="question" type="text" name="question${++questionName}"  placeholder="New Question">
 </div>
@@ -89,6 +95,7 @@ $(document).ready(function() {
 <div >
   <div class="choices">
  <div class="choice">
+
   <input  type="text"  id="${optionId}" name= "question${questionName}" placeholder="answer text">
 
     <label>
@@ -115,20 +122,23 @@ $(document).ready(function() {
   });
 
 
+
 ///////////////////////////////////////////////////////////////Function to parse the DOM response adn run SQL inserts
-  // $('#quizForm').on("submit", function(event) {
-  //   event.preventDefault();
+  $('#quizForm').on("submit", function(event) {
+    event.preventDefault();
 
 
+  $('input[type="text"]').each(function() {
+
+    if ($('input:text').val().length == 0) {
+        console.log("Empty field");
+      }})
+  })
 
 
-  // })
 
 
 /////////data validation
-  // document.querySelectorAll('#myform input');
-  // if ($('input:text').val().length == 0) {
-    //   console.log("Empty field");
     // /////////////////Ayans///////////////////////
 // $('.submit-answers').on('click', function() {
 //   let allQuestionsAnswered = true;
@@ -165,176 +175,4 @@ $(document).ready(function() {
 });
 
 
-/*
 
-quiz = {
-  name: 'Test Quiz'
-  category: 'History'
-  thumbnail: 'url'
-  description: 'great quiz'
-  time_limit: 3
-  is_unlisted: false
-  question1: {
-    questionText: 'asdfasdf'
-    option1: {
-      optionText: 'dsflkdfs'
-      is_correct: false
-    }
-    option2: {
-      optionText: 'dsflkdfs'
-      is_correct: true
-    }
-    option3: {
-      optionText: 'dsflkdfs'
-      is_correct: false
-    }
-    option4: {
-      optionText: 'dsflkdfs'
-      is_correct: false
-    }
-
-  }
-  question2: {
-    questionText: 'asdfasdf'
-    option1: {
-      optionText: 'dsflkdfs'
-      is_correct: false
-    }
-    option2: {
-      optionText: 'dsflkdfs'
-      is_correct: true
-    }
-    option3: {
-      optionText: 'dsflkdfs'
-      is_correct: false
-    }
-    option4: {
-      optionText: 'dsflkdfs'
-      is_correct: false
-    }
-
-  }
-  question3: {
-    questionText: 'asdfasdf'
-    option1: {
-      optionText: 'dsflkdfs'
-      is_correct: false
-    }
-    option2: {
-      optionText: 'dsflkdfs'
-      is_correct: true
-    }
-    option3: {
-      optionText: 'dsflkdfs'
-      is_correct: false
-    }
-    option4: {
-      optionText: 'dsflkdfs'
-      is_correct: false
-    }
-
-  }
-}
-
-//prerequisites
-
-function that can create names for the elements based on where they are added
-
-question element.name itterate on "new question"
-
-option element.name pulls from question element.name
-
-radio element.name pulls from question element.name
-
-
-
-STEP 1:
-  put quiz data into db and get new quiz key
-
-  INSERT INTO quizzes (fields)
-  VALUES (all data)
-  RETURNING id;
-
-STEP 2:
-  for each question insert question data
-
-  INSERT INTO questions (fields)
-  VALUES (quiz_id, text)
-  RETURNING id;
-
-STEP 3:
-  for each choice in each question, insert choice data
-
-  INSERT INTO choices (fields)
-  VALUES (question_id, text, is_correct);
-
-
-
-
-$('#quizForm').filter(':radio').each(function() {
-:input[type='radio']
-
-
-}
-
-$('#quizForm').filter('.bio_field').each(function() {
-
-
-
-}
-
-
-
-let question_id;
-
-
-
-$('#quizForm').filter('.question' || '.choice').each(function() {
-
-
-
-  if ($(this).attr('class') === 'question') {
-    INSERT INTO questions
-
-  }
-
-  if ($(this).attr('class') === 'option') {
-    INSERT INTO options
-
-  }
-    */
-
-// for loop
-
-
-// {
-//   '1': '2',
-//   '2': '7',
-//   '3': '10',
-
-
-//   quiz_name: 'Test Quiz',
-//   category: 'History',
-//   thumbnail: 'thumb',
-//   description: 'aadsd',
-//   time_limit: '33',
-
-
-//   question1: 'A',
-//     option1: '1',
-//     option2: '2', // Bool True
-//     option3: '3',
-//     option4: '4',
-
-//   question2: 'B',
-//     option5: '5',
-//     option6: '6',
-//     option7: '7', // Bool True
-//     option8: '8',
-
-//   question3: 'C',
-//     option9: '9',
-//     option10: '12', // Bool True
-//     option11: '11',
-//     option12: '12'
-// }
