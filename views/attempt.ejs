@@ -23,7 +23,7 @@
                 <div class="question"><%= questions[option].question %>
                     <% for (const choice of questions[option].choices) { %>
                       <input type="radio" id="option" name="<%= questions[option].question_id %>" value="<%= choice %>">
-                      <label for="option"><%= choice %></label>
+                      <label class="optionRadio" for="option"><%= choice %></label>
                       <%console.log(choice)%>
                       <% } %>
                 <% } %>
