@@ -1,5 +1,6 @@
 $(() => {
   $('#quiz-questions').hide();
+  $('#shareButton').hide();
 
   $('.start').on('click', function() {
     $('.start').remove();
@@ -36,6 +37,7 @@ $(() => {
       console.log('All questions answered.');
       $('.start-time').remove();
       $('.submit-answers').remove();
+      $('#shareButton').show();
 
       //---------check if answers correct or not----------//
 
@@ -45,9 +47,28 @@ $(() => {
 
       const hiddenId = $('#hidden').val();
 
+      let userScore;
+
       $.post('/quiz/' + hiddenId, $('#quiz').serialize())
-        //receives the data sent via res.send on the server side, then display results on the page with jquery
-        .then(response => $('#results').append("You got  " + response.response + "/" + numOfQuestions + " questions correct!"));
+      //receives the data sent via res.send on the server side, then display results on the page with jquery
+        .then(response => {
+          userScore = response.response;
+          $('#results').append("You got  " + response.response + "/" + numOfQuestions + " questions correct!");
+        });
+
+
+      $('#shareButton').on('click', function() {
+        const textToShare = "I scored " + userScore + "/" + numOfQuestions + " on this quiz! Check it out on ThinkFast!";
+
+        let urlToShare = 'http://localhost:8080/quiz/1';
+
+        const shareText = encodeURIComponent(textToShare);
+        const shareLink = encodeURIComponent(urlToShare);
+
+        urlToShare = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + shareLink;
+
+        window.open(urlToShare, '_blank');
+      });
     }
   });
 });
