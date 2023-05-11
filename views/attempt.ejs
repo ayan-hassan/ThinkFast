@@ -19,30 +19,16 @@
 
       <section id="quiz-questions">
         <form id="quiz">
-          <% let questionCounter = 0 %>
-          <% let numOfOptions = 0 %>
-          <% let uniqueQuestions = [] %>
-          <% for (const options of quiz) { %>
-            <% if (!uniqueQuestions.includes(options.question)) { %>
-              <% uniqueQuestions.push(options.question) %>
-              <% } %>
-              <% } %>
-              <% for (let counter = 0; counter < uniqueQuestions.length; counter++) { %>
-                <div class="question"><%= quiz[questionCounter].question %>
-
-                  <% for (const option in quiz) { %>
-                    <% if (quiz[option].question_id === counter + 1) { %>
-                      <% numOfOptions++ %>
-                      <input type="radio" id="option" name="<%= quiz[option].question_id %>" value="<%= quiz[option].option %>">
-                      <label for="option"><%= quiz[option].option %></label>
+              <% for (const option in questions) { %>
+                <div class="question"><%= questions[option].question %>
+                    <% for (const choice of questions[option].choices) { %>
+                      <input type="radio" id="option" name="<%= questions[option].question_id %>" value="<%= choice %>">
+                      <label for="option"><%= choice %></label>
+                      <%console.log(choice)%>
                       <% } %>
-                      <% } %>
-                      <% questionCounter += numOfOptions %>
-                      <% numOfOptions = 0 %>
-                      <% } %>
-                    </div>
-                  </div>
-                </form>
+                <% } %>
+            </div>
+          </form>
                 <h1 id="results"></h1>
       </section>
     </main>

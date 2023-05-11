@@ -54,6 +54,23 @@ router.get('/:id', (req, res) => {
     loggedIn = true;
   }
 
+  const groupQuestions = (quiz) => {
+    //declare the expty object variable to hold results
+    const questionGroup = {};
+    //loop through quiz result and if the question_id doesn't exist, add it as an object to hold the question_id and options(as an array)
+    for (const question of quiz) {
+      if (!questionGroup[question.question_id]) {
+        questionGroup[question.question_id] = {question: question.question, question_id: question.question_id, choices: []};
+      }
+      // if question_id doesn't exist
+      questionGroup[question.question_id].choices.push(question.option);
+
+
+    }
+    console.log(questionGroup);
+    return questionGroup;
+  };
+
   const id = req.params.id;
   db.query(`
   SELECT users.name, quizzes.id AS quiz_id, quizzes.title, quizzes.description, questions.*, choices.*
@@ -64,8 +81,9 @@ router.get('/:id', (req, res) => {
   WHERE quizzes.id = $1`, [id])
     .then(data => {
       const quiz = data.rows;
-      const templateVars = {quiz:quiz, quizId:id, loggedIn};
-      // console.log(quiz);
+      const questions = groupQuestions(quiz);
+      const templateVars = {questions, quiz:quiz, quizId:id, loggedIn};
+      console.log(quiz);
       res.render('attempt', templateVars);
     })
     .catch(err => {
