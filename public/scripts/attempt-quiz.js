@@ -45,7 +45,7 @@ $(() => {
 
       $.post('/quiz/' + hiddenId, $('#quiz').serialize())
         //receives the data sent via res.send on the server side, then display results on the page with jquery
-        .then(response => $('#results').append(response.response));
+        .then(response => $('#results').append("You scored " + response.response));
     }
   });
 });
