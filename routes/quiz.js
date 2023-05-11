@@ -1,8 +1,16 @@
 const express = require('express');
+const db = require('../db/connection');
 const router  = express.Router();
 const {getCategories} = require('../db/queries/quiz')
 const {insertQuiz, insertQuestions, insertOptions} = require('../db/queries/create')
+const cookieSession = require('cookie-session');
 
+const app = express();
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['123', '456', '789']
+}));
 
 router.get('/', (req, res) => {
 
@@ -13,6 +21,7 @@ router.get('/', (req, res) => {
   res.redirect('/login');
   //if logged in - redirect '/create' else redirect 'login'
 });
+
 
 router.get('/create', (req, res) => {
 
@@ -39,13 +48,74 @@ if(!loggedIn) {
 });
 
 router.get('/:id', (req, res) => {
-  res.render('attempt');
+
+  let loggedIn = false;
+  if (req.session.user_id) {
+    loggedIn = true;
+  }
+
+  const id = req.params.id;
+  db.query(`
+  SELECT users.name, quizzes.id AS quiz_id, quizzes.title, quizzes.description, questions.*, choices.*
+  FROM quizzes
+  JOIN questions ON quiz_id = quizzes.id
+  FULL OUTER JOIN choices ON question_id = questions.id
+  JOIN users ON creator_id = users.id
+  WHERE quizzes.id = $1`, [id])
+    .then(data => {
+      const quiz = data.rows;
+      const templateVars = {quiz:quiz, quizId:id, loggedIn};
+      // console.log(quiz);
+      res.render('attempt', templateVars);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({error:err.message});
+    });
 });
 
 router.get('/results/:id', (req, res) => {
   res.render('results');
 });
 
+router.post('/:id', (req, res) => {
+  let userResponse = req.body;
+  const id = req.params.id;
+
+  //query database for correct answers
+
+  return db.query(`
+    SELECT option, is_correct
+    FROM quizzes
+    JOIN questions ON quiz_id = quizzes.id
+    JOIN choices ON question_id = questions.id
+    JOIN users ON creator_id = users.id
+    WHERE quizzes.id = $1
+    AND is_correct = 'true'`, [id])
+    .then(data => {
+      const answers = data.rows;
+
+
+      //compare answers to database
+
+      let totalCorrectAnswers = 0;
+      for (const index in answers) {
+        let correctAnswer = answers[index].option;
+        // console.log(numOfQuestion.length);
+        for (const response in userResponse) {
+          let userAnswer = userResponse[response];
+          // console.log(userResponse[response]);
+          if (correctAnswer === userAnswer) {
+            totalCorrectAnswers++;
+          }
+        }
+      }
+      console.log(totalCorrectAnswers);
+      return totalCorrectAnswers;
+    })
+    .then((response) => res.send({ response }));//send quiz results to client side
+});
 router.post('/submit', (req, res) => {
   const quiz = req.body;
 
@@ -79,6 +149,7 @@ router.post('/submit', (req, res) => {
       }
       console.log("Query finished")
     })
+    .catch(err => console.log(err));
 
 
   res.redirect(`/users/${req.session.user_id}`);

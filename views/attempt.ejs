@@ -2,9 +2,52 @@
 <html lang="en">
 
   <%- include('partials/_head') %>
-
   <body>
     <%- include('partials/_header') %>
-    <h1>attempt</h1>
+    <main class="results-page">
+    <section class="title-author-description">
+        <div class="quiz-name"><%= quiz[0].title %></div>
+        <div class="quiz-author">By <%= quiz[0].name %></div>
+        <div class="description"><%= quiz[0].description %></div>
+    </section>
+
+      <div class="start-time">
+          <button class="start">START!</button>
+        <div class="timer">00:00:00</div>
+      </div>
+      <input id="hidden" type="hidden" value="<%= quizId %>">
+
+      <section id="quiz-questions">
+        <form id="quiz">
+          <% let questionCounter = 0 %>
+          <% let numOfOptions = 0 %>
+          <% let uniqueQuestions = [] %>
+          <% for (const options of quiz) { %>
+            <% if (!uniqueQuestions.includes(options.question)) { %>
+              <% uniqueQuestions.push(options.question) %>
+              <% } %>
+              <% } %>
+              <% for (let counter = 0; counter < uniqueQuestions.length; counter++) { %>
+                <div class="question"><%= quiz[questionCounter].question %>
+
+                  <% for (const option in quiz) { %>
+                    <% if (quiz[option].question_id === counter + 1) { %>
+                      <% numOfOptions++ %>
+                      <input type="radio" id="option" name="<%= quiz[option].question_id %>" value="<%= quiz[option].option %>">
+                      <label for="option"><%= quiz[option].option %></label>
+                      <% } %>
+                      <% } %>
+                      <% questionCounter += numOfOptions %>
+                      <% numOfOptions = 0 %>
+                      <% } %>
+                    </div>
+                  </div>
+                </form>
+                <h1 id="results"></h1>
+      </section>
+    </main>
+    <input class="submit-answers" type="submit" value="Submit">
+    <button id="shareButton">Share your results!</button>
   </body>
 </html>
+

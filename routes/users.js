@@ -45,7 +45,7 @@ router.get('/:id', (req, res) => {
     .then(() => {
       res.render('users', templateVars);
     })
-    .catch(err => console.log(err.message));
+    .catch(err => console.log(err));
 
 });
 

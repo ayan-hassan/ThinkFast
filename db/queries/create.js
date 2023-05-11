@@ -26,6 +26,7 @@ const insertQuiz = function(quiz, user_id) {
       const is_unlisted = quiz.unlisted? true : false;
       return db.query(queryString, [quiz.quiz_name, category_id.id, quiz.description, quiz.thumbnail, is_unlisted, user_id, quiz.time_limit]);
     })
+    .catch(err => console.log(err));
 
 };
 

@@ -5,6 +5,7 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const db = require('./db/connection');
 
@@ -23,6 +24,7 @@ const { getAllQuizzes, getRandomQuiz } = require('./db/queries/index');
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   '/styles',
   sassMiddleware({
@@ -46,7 +48,7 @@ const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const loginRoutes = require('./routes/login');
 const registerRoutes = require('./routes/register');
-const logoutRoutes = require('./routes/logout');
+const logoutRoutes = require('./routes/logout')
 const quizRoutes = require('./routes/quiz');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
