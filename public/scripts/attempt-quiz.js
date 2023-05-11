@@ -41,11 +41,13 @@ $(() => {
 
       //send answers to server with ajax?
 
+      let numOfQuestions = ('#id').length;
+
       const hiddenId = $('#hidden').val();
 
       $.post('/quiz/' + hiddenId, $('#quiz').serialize())
         //receives the data sent via res.send on the server side, then display results on the page with jquery
-        .then(response => $('#results').append("You scored " + response.response));
+        .then(response => $('#results').append("You got  " + response.response + "/" + numOfQuestions + " questions correct!"));
     }
   });
 });

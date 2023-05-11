@@ -97,14 +97,14 @@ router.post('/:id', (req, res) => {
     AND is_correct = 'true'`, [id])
     .then(data => {
       const answers = data.rows;
-      console.log(answers);
+
 
       //compare answers to database
 
       let totalCorrectAnswers = 0;
       for (const index in answers) {
         let correctAnswer = answers[index].option;
-        // console.log(correctAnswer);
+        // console.log(numOfQuestion.length);
         for (const response in userResponse) {
           let userAnswer = userResponse[response];
           // console.log(userResponse[response]);
