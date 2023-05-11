@@ -46,9 +46,10 @@ app.use(cookieSession({
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
-const loginRoutes = require('./routes/login')
-const registerRoutes = require('./routes/register')
-const quizRoutes = require('./routes/quiz')
+const loginRoutes = require('./routes/login');
+const registerRoutes = require('./routes/register');
+const logoutRoutes = require('./routes/logout')
+const quizRoutes = require('./routes/quiz');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`

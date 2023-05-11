@@ -3,7 +3,14 @@ const db = require('../db/connection');
 const router  = express.Router();
 const {getCategories} = require('../db/queries/quiz')
 const {insertQuiz, insertQuestions, insertOptions} = require('../db/queries/create')
+const cookieSession = require('cookie-session');
 
+const app = express();
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['123', '456', '789']
+}));
 
 router.get('/', (req, res) => {
 
@@ -43,6 +50,12 @@ if(!loggedIn) {
 });
 
 router.get('/:id', (req, res) => {
+
+  let loggedIn = false;
+  if (req.session.user_id) {
+    loggedIn = true;
+  }
+
   const id = req.params.id;
   db.query(`
   SELECT users.name, quizzes.id AS quiz_id, quizzes.title, quizzes.description, questions.*, choices.*
@@ -53,7 +66,7 @@ router.get('/:id', (req, res) => {
   WHERE quizzes.id = $1`, [id])
     .then(data => {
       const quiz = data.rows;
-      const templateVars = {quiz:quiz, quizId:id};
+      const templateVars = {quiz:quiz, quizId:id, loggedIn};
       // console.log(quiz);
       res.render('attempt', templateVars);
     })
