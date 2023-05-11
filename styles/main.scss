@@ -32,6 +32,48 @@ button {
   color: white;
   background-color: #5c548c;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.new_quiz_button {
+  text-align: center;
+  transition: 0.5s;
+  background-color: #fdecf5;
+
+  box-shadow: 1px 1px 1px rgba(94, 104, 121, 1);
+  border-radius: 30px;
+  padding: 5px 17px;
+  margin: 5px;
+  color: #5c548c;
+  font-size: 20pt;
+  // border: solid thin;
+  text-decoration: none;
+  font-weight: bolder;
+  height: 2em;
+
+  // display: inline-block;
+
+}
+.new_quiz_button p {
+  vertical-align: top;
+  display: inline-block;
+  margin-top: 0;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: 0.5s;
+  justify-content: center;
+  font-weight: normal;
+}
+.new_quiz_button:hover p {
+  max-width: 1000px;
+}
+
+
+.new_quiz_button:hover {
+  box-shadow: 3px 1px 3px rgba(94, 104, 121, 1);
+
+
 }
 
 .logo {
@@ -41,6 +83,10 @@ button {
   color: rgb(35, 25, 66);
   background: none;
   border: none;
+  transition: 0.2s;
+}
+.logo:hover {
+  color: #fdecf5;
 }
 
 .header-elements {
