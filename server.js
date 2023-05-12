@@ -105,6 +105,31 @@ app.get('/reload', (req, res) => {
     });
 });
 
+
+app.get('/:id', (req, res) => {
+
+  const attempt_id = req.params.id;
+
+  let loggedIn = false;
+  if (req.session.user_id) {
+    loggedIn = true;
+  }
+
+  const templateVars = {
+    loggedIn
+  };
+
+  getQuizAttempt(attempt_id)
+  .then(response => {
+    templateVars.attemptData = response.rows[0];
+
+  })
+  .then(() => {
+    res.render('index', templateVars);
+    $('.modal').toggleClass('hidden');
+  })
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

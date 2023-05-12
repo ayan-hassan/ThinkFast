@@ -3,6 +3,7 @@ const db = require('../db/connection');
 const router  = express.Router();
 const {getCategories} = require('../db/queries/quiz')
 const {insertQuiz, insertQuestions, insertOptions} = require('../db/queries/create')
+const {getCorrectAnswers, submitQuizAttempt, getQuizAttempt, getQuizData, getQuestionsForQuiz, getChoices} = require('../db/queries/results')
 const cookieSession = require('cookie-session');
 
 const app = express();
@@ -97,20 +98,23 @@ router.get('/results/:id', (req, res) => {
 
 router.post('/:id', (req, res) => {
   let userResponse = req.body;
-  const id = req.params.id;
+  const quiz_id = req.params.id;
+  let user_id;
+
+  if (req.session.user_id) {
+    user_id = req.session.user_id;
+  } else {
+    user_id = 0;
+  }
 
   //query database for correct answers
 
-  return db.query(`
-    SELECT option, is_correct
-    FROM quizzes
-    JOIN questions ON quiz_id = quizzes.id
-    JOIN choices ON question_id = questions.id
-    JOIN users ON creator_id = users.id
-    WHERE quizzes.id = $1
-    AND is_correct = 'true'`, [id])
+  let answers;
+  let user_score;
+
+  getCorrectAnswers(quiz_id)
     .then(data => {
-      const answers = data.rows;
+      answers = data.rows;
 
 
       //compare answers to database
@@ -127,11 +131,25 @@ router.post('/:id', (req, res) => {
           }
         }
       }
-      console.log(totalCorrectAnswers);
       return totalCorrectAnswers;
     })
-    .then((response) => res.send({ response }));//send quiz results to client side
+    .then(correctCount => {
+      user_score = correctCount;
+      console.log("Before submitting:", user_score);
+      return submitQuizAttempt(user_id, quiz_id, user_score, answers.length);
+    })
+    .then(attempt_id => {
+      console.log("After insert:");
+      console.log("user_score:", user_score);
+      console.log("After insert:", attempt_id);
+      res.send({ user_score, attempt_id });//send quiz results to client side
+    })
+    .catch(err => console.log(err));
 });
+
+
+
+
 router.post('/submit', (req, res) => {
   const quiz = req.body;
 
