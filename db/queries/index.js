@@ -40,6 +40,17 @@ const getRandomQuiz = () => {
     .catch(err => console.log(err));
 };
 
-getRandomQuiz();
+const getQuizByCategory = (category) => {
+  const queryString = `
+  SELECT title, categories.name AS category, users.name AS author, photo_url, quizzes.id AS id
+  FROM quizzes
+  JOIN categories ON categories.id = category_id
+  JOIN users ON users.id = creator_id
+  WHERE is_unlisted = false AND categories.name = '${category}'
+  ORDER BY created_at DESC;
+  `;
 
-module.exports = { getAllQuizzes, getRandomQuiz };
+  return db.query(queryString);
+}
+
+module.exports = { getAllQuizzes, getRandomQuiz, getQuizByCategory };

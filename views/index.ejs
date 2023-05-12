@@ -7,20 +7,20 @@
     <%- include('partials/_header') %>
       <section class="category-filter">
         <div class="cat">
-          <button>Science</button>
-          <button>History</button>
-          <button>Movies</button>
-          <button>Music</button>
-          <button>Pop Culture</button>
-          <button>Video Games</button>
+          <button class="cat-name">Science</button>
+          <button class="cat-name">History</button>
+          <button class="cat-name">Movies</button>
+          <button class="cat-name">Music</button>
+          <button class="cat-name">Pop Culture</button>
+          <button class="cat-name">Video Games</button>
         </div>
         <div class="cat">
-          <button>Geography</button>
-          <button>Sports</button>
-          <button>Language</button>
-          <button>Books</button>
-          <button>Food</button>
-          <button>Miscellaneous</button>
+          <button class="cat-name">Geography</button>
+          <button class="cat-name">Sports</button>
+          <button class="cat-name">Language</button>
+          <button class="cat-name">Books</button>
+          <button class="cat-name">Food</button>
+          <button class="cat-name">Miscellaneous</button>
         </div>
       </section>
       <main class="container">
@@ -54,9 +54,7 @@
                   </div>
                 </div>
                 <footer class="label">
-                  <div>
-                    <%= quiz.category %>
-                  </div>
+                  <div class="quiz-category"><%= quiz.category %></div>
                   <div>
                     <%= quiz.author %>
                   </div>
@@ -66,7 +64,7 @@
           </div>
         </div>
 
-        <article  class="modal" id="modal">
+        <!-- <article  class="modal hidden" id="modal">
           <div class="modal_head">
             <h1 class="logo">ThinkFast</h1>
           </div>
@@ -78,7 +76,7 @@
             <button> Try this quiz</button>
           </div>
 
-        </article>
+        </article> -->
 
 
       </main>
