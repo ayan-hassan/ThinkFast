@@ -46,20 +46,22 @@
         <div class="container2">
           <div class="standard-quiz">
             <% for (let quiz of quizzes) { %>
-              <article class="quiz-thumbnail" id="<%= quiz.id %>">
-                <div class="quiz-image">
-                  <img src="<%= quiz.photo_url %>">
-                  <div class="quiz-name-overlay">
-                    <%= quiz.title %>
+              <a href="/quiz/<%= quiz.id %>">
+                <article class="quiz-thumbnail" id="<%= quiz.id %>">
+                  <div class="quiz-image">
+                    <img src="<%= quiz.photo_url %>">
+                    <div class="quiz-name-overlay">
+                      <%= quiz.title %>
+                    </div>
                   </div>
-                </div>
-                <footer class="label">
-                  <div class="quiz-category"><%= quiz.category %></div>
-                  <div>
-                    <%= quiz.author %>
-                  </div>
-                </footer>
-              </article>
+                  <footer class="label">
+                    <div class="quiz-category"><%= quiz.category %></div>
+                    <div>
+                      <%= quiz.author %>
+                    </div>
+                  </footer>
+                </article>
+              </a>
               <% } %>
           </div>
         </div>

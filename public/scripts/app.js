@@ -4,13 +4,6 @@
 
 $(() => {
 
-  $('.quiz-thumbnail').on('click', function() {
-    window.location.href = `/quiz/${$(this).attr('id')}`;
-  });
-
-  $('.featured-quiz').on('click', function() {
-    window.location.href = `/quiz/${$(this).attr('id')}`;
-  });
 
   const reloadQuizzes = (category) => {
     console.log("Before get", category)
@@ -20,6 +13,7 @@ $(() => {
         $('.standard-quiz').empty();
         for (let quiz of response) {
           $('.standard-quiz').append(`
+          <a href="/quiz/${quiz.id}">
           <article class="quiz-thumbnail" id="${quiz.id}">
           <div class="quiz-image">
             <img src="${quiz.photo_url}">
@@ -34,6 +28,7 @@ $(() => {
             </div>
           </footer>
         </article>
+        </a>
           `)
         }
     })
@@ -44,11 +39,5 @@ $(() => {
     let category = $(this).text();
     reloadQuizzes(category)
 
-
-    // $('.quiz-category').each(function() {
-    //   if ($(this).text() !== category) {
-    //     $(this).closest('.quiz-thumbnail').remove()
-    //   }
-    // });
   });
 });

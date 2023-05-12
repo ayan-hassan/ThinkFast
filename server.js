@@ -95,7 +95,6 @@ app.get('/', (req, res) => {
 
 app.get('/reload', (req, res) => {
   const category = req.query.category;
-  console.log("Inside get", category);
   getQuizByCategory(category)
     .then(response => {
       return res.send(response.rows)
