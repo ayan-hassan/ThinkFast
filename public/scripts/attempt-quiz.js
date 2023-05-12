@@ -41,10 +41,12 @@ $(() => {
     const hiddenId = $('#hidden').val();
 
     let userScore;
-
+let attempt_id;
     $.post('/quiz/' + hiddenId, $('#quiz').serialize())
     //receives the data sent via res.send on the server side, then display results on the page with jquery
       .then(response => {
+        attempt_id = response.attempt_id
+        console.log(attempt_id)
         userScore = response.user_score;
         numOfQuestions = response.answers.length
         $('#results').append("You got  " + userScore + "/" + numOfQuestions + " questions correct!");
@@ -54,7 +56,7 @@ $(() => {
     $('#shareButton').on('click', function() {
       const textToShare = "I scored " + userScore + "/" + numOfQuestions + " on this quiz! Check it out on ThinkFast!";
 
-      let urlToShare = 'http://localhost:8080/quiz/1';
+      let urlToShare = `http://localhost:8080/${attempt_id}`;
 
       const shareText = encodeURIComponent(textToShare);
       const shareLink = encodeURIComponent(urlToShare);

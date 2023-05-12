@@ -168,7 +168,8 @@ router.post('/submit', (req, res) => {
         user_score = correctCount;
         return submitQuizAttempt(user_id, quiz_id, user_score, answers.length);
       })
-      .then(attempt_id => {
+      .then(response => {
+        let attempt_id = response.rows[0].id
         res.send({ user_score, attempt_id, answers });//send quiz results to client side
       })
       .catch(err => console.log(err));

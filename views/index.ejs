@@ -4,6 +4,8 @@
 <%- include('partials/_head') %>
 
   <body>
+
+
     <%- include('partials/_header') %>
       <section class="category-filter">
         <div class="cat">
@@ -57,7 +59,9 @@
                     </div>
                   </div>
                   <footer class="label">
-                    <div class="quiz-category"><%= quiz.category %></div>
+                    <div class="quiz-category">
+                      <%= quiz.category %>
+                    </div>
                     <div>
                       <%= quiz.author %>
                     </div>
@@ -67,23 +71,35 @@
               <% } %>
           </div>
         </div>
+        <div class="hidden_for_modal"><%=attemptData.user%></div>
 
-        <!-- <article  class="modal hidden" id="modal">
+        <dialog class="modal" id="modal">
           <div class="modal_head">
             <h1 class="logo">ThinkFast</h1>
           </div>
           <div class="modal_body">
-            <h1>Quiz Name</h1>
-            <h4>See how [user_name] did on this quiz!</h4>
-            <h2>user Score X/Y</h2>
-            <h2>100%</h2>
+            <h1><%=attemptData.quiz_title%></h1>
+            <h4>See how <%=attemptData.user%> did on this quiz!</h4>
+            <h2>user Score <%=attemptData.user_score%>/<%=attemptData.max_score%></h2>
+            <!-- <h2>100%</h2> -->
             <button> Try this quiz</button>
           </div>
 
-        </article> -->
+        </dialog>
 
 
       </main>
   </body>
+  <script>
+    $(document).ready(function() {
+
+      const modal = document.querySelector('#modal');
+      const checker = $(".hidden_for_modal").text()
+      if ($(".hidden_for_modal").text() !== "henry" ){
+      console.log("Graydon right here: ", checker)
+      modal.showModal();
+      }
+    });
+  </script>
 
 </html>

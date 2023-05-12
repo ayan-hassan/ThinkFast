@@ -72,7 +72,11 @@ app.get('/', (req, res) => {
   }
 
   const templateVars = {
-    loggedIn
+    loggedIn,
+    attemptData: {user: "henry",
+    quiz_title: null,
+  user_score: null,
+nax_score: null}
   };
 
   getAllQuizzes()
@@ -119,6 +123,7 @@ app.get('/:id', (req, res) => {
   getQuizAttempt(attempt_id)
     .then(response => {
       templateVars.attemptData = response.rows[0];
+      console.log("Graydon right here: ", templateVars.attemptData)
       return getAllQuizzes()
     })
     .then(result => {
@@ -130,7 +135,9 @@ app.get('/:id', (req, res) => {
     })
     .then(() => {
       res.render('index', templateVars);
-      $('.modal').toggleClass('hidden');
+      // const modal = document.querySelector('#modal')
+      // modal.showMOdal()
+      // $('.modal').toggleClass('hidden');
     })
     .catch(err => console.log(err));
 });
