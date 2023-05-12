@@ -1,60 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%- include('partials/_head') %>
+<%- include('partials/_head') %>
+  <script>
+   $(() => {
+
+
+      const avatars = ["https://i.imgur.com/nlhLi3I.png", "https://i.imgur.com/z5LNkkB.png", "https://i.imgur.com/v0JXau2.png", "https://i.imgur.com/lRUnDgU.png", "https://i.imgur.com/3GvwNBf.png", "https://i.imgur.com/73hZDYK.png", "https://i.imgur.com/5fUVPRP.png", "https://i.imgur.com/DVpDmdR.png", "https://i.imgur.com/2WZtOD6.png", "https://i.imgur.com/ilT4JDe.png"];
+      const userAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+      console.log(userAvatar)
+      $("#profile-img").attr({"src": userAvatar});
+
+
+  });
+  </script>
+
+
+
 
   <body>
     <%- include('partials/_header') %>
 
-    <main class="users">
-      <section class="user-panel" id="profile">
-        <img src="http://sancarlosblog.agentfire2.com/wp-content/uploads/sites/455/2016/03/quiz-1024x1024.jpg" id="profile-img">
-        <h2><%= user.name %></h2>
-        <h3><%= user.email %></h3>
-      </section>
-      <section class="user-quizzes" id="quizzes">
-        <h2>My Quizzes</h2>
-        <section id="user-quizzes">
+      <main class="users">
+        <section class="user-panel" id="profile">
+          <img  id="profile-img">
+          <h2>
+            <%= user.name %>
+          </h2>
+          <h3>
+            <%= user.email %>
+          </h3>
+        </section>
+        <section class="user-quizzes" id="quizzes">
+          <h2>My Quizzes</h2>
+          <section id="user-quizzes">
             <% for (let quiz of userQuizzes) { %>
 
-<a href="/quiz/<%= quiz.id %>">
+              <a href="/quiz/<%= quiz.id %>">
 
-  <article class="quiz">
-    <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
-    <div class="quiz-info">
-      <span><%= quiz.title %></span>
-      <span><%= quiz.category %></span>
-      <!-- <form action="/quiz/<%= quiz.id %>" method="GET">
+                <article class="quiz">
+                  <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
+                  <div class="quiz-info">
+                    <span>
+                      <%= quiz.title %>
+                    </span>
+                    <span>
+                      <%= quiz.category %>
+                    </span>
+                    <!-- <form action="/quiz/<%= quiz.id %>" method="GET">
         <button>Take quiz</button>
       </form> -->
-    </div>
-  </article>
-</a>
+                  </div>
+                </article>
+              </a>
               <% } %>
+          </section>
         </section>
-      </section>
-      <section class="user-history" id="history">
-        <h2>My History</h2>
-        <section id="user-history">
+        <section class="user-history" id="history">
+          <h2>My History</h2>
+          <section id="user-history">
 
-          <% for (let quiz of userHistory) { %>
-            <a href="/quiz/<%= quiz.id %>">
+            <% for (let quiz of userHistory) { %>
+              <a href="/quiz/<%= quiz.id %>">
 
-              <article class="quiz">
-                <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
-                <div class="quiz-info">
-                  <span><%= quiz.title %></span>
-                  <span><%= quiz.category %></span>
-                  <!-- <form action="/quiz/<%= quiz.id %>" method="GET">
+                <article class="quiz">
+                  <img class="quiz-photo" src="<%= quiz.photo_url %>" alt="">
+                  <div class="quiz-info">
+                    <span>
+                      <%= quiz.title %>
+                    </span>
+                    <span>
+                      <%= quiz.category %>
+                    </span>
+                    <!-- <form action="/quiz/<%= quiz.id %>" method="GET">
                     <button>Take quiz</button>
                   </form> -->
-                </div>
-              </article>
-            </a>
-          <% } %>
+                  </div>
+                </article>
+              </a>
+
+
+              <% } %>
+          </section>
         </section>
-      </section>
-    </main>
+      </main>
   </body>
 
 </html>
