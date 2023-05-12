@@ -26,6 +26,7 @@ $(() => {
     $('.timer').addClass("fixOnScroll");
   });
 
+
   $('.submit-answers').on('click', function() {
     $('.start-time').remove();
     $('.submit-answers').remove();

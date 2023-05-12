@@ -149,7 +149,7 @@ router.post('/submit', (req, res) => {
     if (req.session.user_id) {
       user_id = req.session.user_id;
     } else {
-      user_id = 0;
+      user_id = 1;
     }
 
     //query database for correct answers

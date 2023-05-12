@@ -8,6 +8,8 @@
   gap: 5%;
   background-color: #fdecf5;
   text-align: center;
+  margin: 0 auto;
+  margin-top: 120px;
 }
 
 .results-page {
@@ -104,7 +106,7 @@
 #option {
   display: flex;
   flex-direction: row;
-  width: 30%;
+  width: 0;
   margin: 0 auto;
   background: #efd9f2;
   font-size: x-large;
@@ -114,17 +116,18 @@
   gap: 10px;
 }
 
-#optionRadio:hover {
+#choiceOption:hover {
   background-color: #8974ad;
   color: #fff;
+  cursor: pointer;
 }
 
-#optionRadio:active {
-  background-color: #8974ad;
-  color: #fff;
-}
+// #optionRadio:active {
+//   background-color: #8974ad;
+//   color: #fff;
+// }
 
-#optionRadio {
+#choiceOption {
   display: flex;
   align-items: center;
   text-align:center;
@@ -135,19 +138,47 @@
   margin: 5px;
 }
 
-input[type="radio"] {
-  // -webkit-appearance: none;
-  visibility: hidden;
-  display: none;
+input[type="radio"]~.choiceOption {
+  background-color: #efd9f2;
+  width: 100%;
+  border-radius: 10px;
 }
 
-input[type="radio"]:checked~#option {
+// input[type="radio"]:checked~#option {
+//   background: #5c548c;
+// }
+
+input[type="radio"]:checked~.choiceOption {
   background: #5c548c;
 }
+
+// input[type="checkbox"]:checked~.choiceOption {
+//   background: #5c548c;
+// }
+
+.choiceOption::before {
+  display: flex;
+  align-items: center;
+  text-align:center;
+  font-size: x-large;
+  background-color: #0000;
+  width: 90%;
+  border-radius: 10px;
+  margin: 5px;
+
+}
+
+// input[type="radio"]:checked~.choiceOption:before {
+//   color: #fff;
+//   background-color: #0000;
+// }
 
 .choiceOption {
   font-size: 27px;
   padding: 20px;
+  display: flex;
+  margin: 0 auto;
+
 }
 
 input.submit-answers {
@@ -196,4 +227,3 @@ form {
 }
 
 //--------------------------------//
-
