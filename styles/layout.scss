@@ -25,6 +25,12 @@ main.container {
   height: 90%;
 }
 
+.standard-quiz > a {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
 .category-filter {
   width: 100%;
   // margin: 0 auto;
