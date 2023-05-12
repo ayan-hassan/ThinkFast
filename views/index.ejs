@@ -26,21 +26,23 @@
       <main class="container">
         <div class="container1">
           <aside class="featured-quiz" id="<%= featured.id %>">
-            <div class="featured-overlay"> featured quiz</div>
-            <div class="quiz-image">
-              <img src="<%= featured.photo_url %>">
-              <div class="quiz-name-overlay">
-                <%= featured.title %>
+            <a href="/quiz/<%= featured.id %>">
+              <div class="featured-overlay"> featured quiz</div>
+              <div class="quiz-image">
+                <img src="<%= featured.photo_url %>">
+                <div class="quiz-name-overlay">
+                  <%= featured.title %>
+                </div>
               </div>
-            </div>
-            <footer class="label">
-              <div>
-                <%= featured.category %>
-              </div>
-              <div>
-                <%= featured.author %>
-              </div>
-            </footer>
+              <footer class="label">
+                <div>
+                  <%= featured.category %>
+                </div>
+                <div>
+                  <%= featured.author %>
+                </div>
+              </footer>
+            </a>
           </aside>
         </div>
         <div class="container2">
