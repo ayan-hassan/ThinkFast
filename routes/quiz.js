@@ -96,66 +96,16 @@ router.get('/results/:id', (req, res) => {
   res.render('results');
 });
 
-router.post('/:id', (req, res) => {
-  let userResponse = req.body;
-  const quiz_id = req.params.id;
-  let user_id;
-
-  if (req.session.user_id) {
-    user_id = req.session.user_id;
-  } else {
-    user_id = 0;
-  }
-
-  //query database for correct answers
-
-  let answers;
-  let user_score;
-
-  getCorrectAnswers(quiz_id)
-    .then(data => {
-      answers = data.rows;
-
-
-      //compare answers to database
-
-      let totalCorrectAnswers = 0;
-      for (const index in answers) {
-        let correctAnswer = answers[index].option;
-        // console.log(numOfQuestion.length);
-        for (const response in userResponse) {
-          let userAnswer = userResponse[response];
-          // console.log(userResponse[response]);
-          if (correctAnswer === userAnswer) {
-            totalCorrectAnswers++;
-          }
-        }
-      }
-      return totalCorrectAnswers;
-    })
-    .then(correctCount => {
-      user_score = correctCount;
-      console.log("Before submitting:", user_score);
-      return submitQuizAttempt(user_id, quiz_id, user_score, answers.length);
-    })
-    .then(attempt_id => {
-      console.log("After insert:");
-      console.log("user_score:", user_score);
-      console.log("After insert:", attempt_id);
-      res.send({ user_score, attempt_id });//send quiz results to client side
-    })
-    .catch(err => console.log(err));
-});
 
 
 
 
 router.post('/submit', (req, res) => {
   const quiz = req.body;
-
+  console.log("test");
   insertQuiz(quiz, req.session.user_id)
-    .then(result => {
-      const quiz_id = result.rows[0].id;
+  .then(result => {
+    const quiz_id = result.rows[0].id;
       console.log("query done");
       for (let value of Object.values(quiz)) {
         console.log("value", value);
@@ -183,16 +133,67 @@ router.post('/submit', (req, res) => {
       }
       console.log("Query finished")
     })
+    .then(() => res.redirect(`/users/${req.session.user_id}`))
     .catch(err => console.log(err));
 
 
-  res.redirect(`/users/${req.session.user_id}`);
-  //later redirect to user/:id
-})
+    // res.redirect(`/users/${req.session.user_id}`);
+    //later redirect to user/:id
+  })
 
-// {
-//   quiz_name: 'Test Quiz',
-//   category: 'History',
+  router.post('/:id', (req, res) => {
+    let userResponse = req.body;
+    const quiz_id = req.params.id;
+    let user_id;
+
+    if (req.session.user_id) {
+      user_id = req.session.user_id;
+    } else {
+      user_id = 0;
+    }
+
+    //query database for correct answers
+
+    let answers;
+    let user_score;
+
+    getCorrectAnswers(quiz_id)
+      .then(data => {
+        answers = data.rows;
+
+
+        //compare answers to database
+
+        let totalCorrectAnswers = 0;
+        for (const index in answers) {
+          let correctAnswer = answers[index].option;
+          // console.log(numOfQuestion.length);
+          for (const response in userResponse) {
+            let userAnswer = userResponse[response];
+            // console.log(userResponse[response]);
+            if (correctAnswer === userAnswer) {
+              totalCorrectAnswers++;
+            }
+          }
+        }
+        return totalCorrectAnswers;
+      })
+      .then(correctCount => {
+        user_score = correctCount;
+        console.log("Before submitting:", user_score);
+        return submitQuizAttempt(user_id, quiz_id, user_score, answers.length);
+      })
+      .then(attempt_id => {
+        console.log("After insert:");
+        console.log("user_score:", user_score);
+        console.log("After insert:", attempt_id);
+        res.send({ user_score, attempt_id });//send quiz results to client side
+      })
+      .catch(err => console.log(err));
+  });
+  // {
+    //   quiz_name: 'Test Quiz',
+    //   category: 'History',
 //   thumbnail: 'thumb',
 //   description: 'asdasd',
 //   time_limit: '33',
