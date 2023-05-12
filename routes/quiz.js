@@ -152,7 +152,7 @@ router.post('/:id', (req, res) => {
 
 router.post('/submit', (req, res) => {
   const quiz = req.body;
-
+console.log("squiggly pig", req.body)
   insertQuiz(quiz, req.session.user_id)
     .then(result => {
       const quiz_id = result.rows[0].id;

@@ -15,6 +15,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 const { getAllQuizzes, getRandomQuiz, getQuizByCategory } = require('./db/queries/index');
+const { getCorrectAnswers, submitQuizAttempt, getQuizAttempt, getQuizData, getQuestionsForQuiz, getChoices } = require('./db/queries/results');
 
 // const document = new Document();
 // document.addEventListener('click', () => console.log('click'))
@@ -48,7 +49,7 @@ const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const loginRoutes = require('./routes/login');
 const registerRoutes = require('./routes/register');
-const logoutRoutes = require('./routes/logout')
+const logoutRoutes = require('./routes/logout');
 const quizRoutes = require('./routes/quiz');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -91,19 +92,19 @@ app.get('/', (req, res) => {
     })
     .catch(err => console.log(err));
 
-  });
+});
 
 app.get('/reload', (req, res) => {
   const category = req.query.category;
   getQuizByCategory(category)
     .then(response => {
-      return res.send(response.rows)
+      return res.send(response.rows);
     })
     .catch(err => {
-      console.log(err)
+      console.log(err);
       return res.status(400).send(err);
     });
-})
+});
 
 
 app.get('/:id', (req, res) => {
@@ -120,14 +121,23 @@ app.get('/:id', (req, res) => {
   };
 
   getQuizAttempt(attempt_id)
-  .then(response => {
-    templateVars.attemptData = response.rows[0];
-
-  })
-  .then(() => {
-    res.render('index', templateVars);
-    $('.modal').toggleClass('hidden');
-  })
+    .then(response => {
+      templateVars.attemptData = response.rows[0];
+      return getAllQuizzes()
+    })
+    .then(result => {
+      console.log(result.rows);
+      templateVars.quizzes = result.rows;
+      return getRandomQuiz();
+    })
+    .then(result => {
+      templateVars.featured = result.rows[0];
+    })
+    .then(() => {
+      res.render('index', templateVars);
+      $('.modal').toggleClass('hidden');
+    })
+    .catch(err => console.log(err));
 });
 
 app.listen(PORT, () => {

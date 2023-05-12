@@ -126,52 +126,52 @@ $(document).ready(function() {
 
 
   ///////////////////////////////////////////////////////////////Function to parse the DOM response adn run SQL inserts
-  $('#quizForm').on("submit", function(event) {
-    event.preventDefault();
-    // console.log("res body: ", res.body)
-    const data = $(this).val();
-    console.log("data: ", data);
-    let incomplete = false;
-    let alertMessage = ""
+  // $('#quizForm').on("submit", function(event) {
+  //   // event.preventDefault();
+  //   // console.log("res body: ", res.body)
+  //   const data = $(this).val();
+  //   console.log("data: ", data);
+  //   let incomplete = false;
+  //   let alertMessage = ""
 
 
-    $('.individual_question').each(function() {
-      let count = 0
-      $('input[type="radio"]:checked', (this)).each(function() {
-        count ++
-      })
-      console.log("count: ",count)
+  //   $('.individual_question').each(function() {
+  //     let count = 0
+  //     $('input[type="radio"]:checked', (this)).each(function() {
+  //       count ++
+  //     })
+  //     console.log("count: ",count)
 
-      if (count === 0) {
-        incomplete = true;
-        alertMessage ="Please ensure all questions have a correct answer"
-      }
-
-
-    });
-
-    $('input[type="text"]').each(function() {
-      if ($(this).val().length == 0) {
-        incomplete = true;
-        alertMessage ="Please ensure all fields are filled out"
-
-      }
-    });
-    if ($('textarea').val().length == 0) {
-      incomplete = true;
-      alertMessage ="Please ensure all fields are filled out"
-    }
+  //     if (count === 0) {
+  //       incomplete = true;
+  //       alertMessage ="Please ensure all questions have a correct answer"
+  //     }
 
 
+  //   });
 
-    if (incomplete === true) {
-      alert(alertMessage);
+  //   $('input[type="text"]').each(function() {
+  //     if ($(this).val().length == 0) {
+  //       incomplete = true;
+  //       alertMessage ="Please ensure all fields are filled out"
 
-    } else {
-      $(this).unbind('submit').submit();
+  //     }
+  //   });
+  //   if ($('textarea').val().length == 0) {
+  //     incomplete = true;
+  //     alertMessage ="Please ensure all fields are filled out"
+  //   }
 
-    }
-  });
+
+
+  //   if (incomplete === true) {
+  //     alert(alertMessage);
+
+  //   } else {
+  //     $(this).unbind('submit').submit();
+
+  //   }
+  // });
 
 
 
