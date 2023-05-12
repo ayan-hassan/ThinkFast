@@ -9,9 +9,9 @@ $(() => {
     const timer = setInterval(function() {
       let mins = parseInt($('#minutes').html());
       let secs = parseInt($('#seconds').html());
-      if (mins < 0) {
+      if (mins === 0 && secs === 0) {
         $('.submit-answers').trigger('click');
-        // alert("boom!");
+        $('.actualTimer').remove();
       }
       if (secs === 0) {
         $('#minutes').html((mins - 1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}));
