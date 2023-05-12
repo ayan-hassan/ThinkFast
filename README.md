@@ -3,33 +3,29 @@ ThinkFast - Quiz Your Friends!
 
 ThinkFast is a fun app that that allows you to create quizzes, take quizzes created by other users, share how you did and challenge your friends! If you create an account, you'll be able to create quizzes as well as keep track of quizzes you have attempted by viewing your profile page. 
 
-Provides a demonstration of HTML, CSS, JS, jQuery and AJAX front-end skills, and Node, Express back-end skills.
+Provides a demonstration of HTML, CSS, JS, jQuery and AJAX front-end skills, and Node, Express, postgreSQL back-end skills.
 
 This was a group project for the Lighthouse Labs web development bootcamp.
 
-<em>Screenshot of desktop version of app</em>
+<em>Homepage</em>
 
-![""](https://github.com/ayan-hassan/midterm/blob/master/public/images/Homepage.png?raw=true)
+!["Homepage"](https://github.com/ayan-hassan/midterm/blob/master/public/images/Homepage.png?raw=true)
 
-<em>Screenshot of desktop version of app</em>
+<em>Create a quiz page</em>
 
-![""](https://github.com/ayan-hassan/midterm/blob/master/public/images/quiz%20builder.png?raw=true)
+!["Create a quiz page"](https://github.com/ayan-hassan/midterm/blob/master/public/images/quiz%20builder.png?raw=true)
 
-<em>Screenshot of desktop version of app</em>
+<em>Quiz attempt page</em>
 
-![""](https://github.com/ayan-hassan/midterm/blob/master/public/images/take%20a%20quiz.png?raw=true)
+!["Quiz attempt page"](https://github.com/ayan-hassan/midterm/blob/master/public/images/take%20a%20quiz.png?raw=true)
 
-<em>Screenshot of desktop version of app</em>
+<em>Profile page</em>
 
-![""]()
+!["Profile page"](https://github.com/ayan-hassan/midterm/blob/master/public/images/profile-page.png?raw=true)
 
-<em>Screenshot of desktop version of app</em>
+<em>Results and share button</em>
 
-![""]()
-
-<em>Screenshot of desktop version of app</em>
-
-![""]()
+!["Results and share button"](https://github.com/ayan-hassan/midterm/blob/master/public/images/results.png?raw=true)
 
 ## Getting Started
 
@@ -46,3 +42,13 @@ This was a group project for the Lighthouse Labs web development bootcamp.
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+- Body parser 
+- Bcrypt JS
+- Chalk
+- Cookie session
+- Dotenv
+- EJS
+- Express
+- Jquery
+- Morgan
+- Sass
