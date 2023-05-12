@@ -1,7 +1,5 @@
 // Client facing scripts here
 
-// const { getQuizByCategory } = require('../../db/queries/index')
-
 $(() => {
 
 

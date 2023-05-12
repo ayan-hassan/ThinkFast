@@ -103,7 +103,7 @@ app.get('/reload', (req, res) => {
       console.log(err)
       return res.status(400).send(err);
     });
-})
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
