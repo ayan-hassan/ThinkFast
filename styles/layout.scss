@@ -19,10 +19,17 @@ main.container {
 
 .standard-quiz {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   flex-direction: row;
   height: 90%;
+  width: 100%
+}
+
+.standard-quiz > a {
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
 }
 
 .category-filter {
@@ -111,7 +118,7 @@ margin: 20px 0 0 ;
   display: flex;
   flex: 2;
   justify-content: center;
-
+  margin-top: 30px;
 }
 
 .featured-quiz {
