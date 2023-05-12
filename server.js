@@ -17,9 +17,6 @@ app.set('view engine', 'ejs');
 const { getAllQuizzes, getRandomQuiz, getQuizByCategory } = require('./db/queries/index');
 const { getCorrectAnswers, submitQuizAttempt, getQuizAttempt, getQuizData, getQuestionsForQuiz, getChoices } = require('./db/queries/results');
 
-// const document = new Document();
-// document.addEventListener('click', () => console.log('click'))
-
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -80,7 +77,6 @@ app.get('/', (req, res) => {
 
   getAllQuizzes()
     .then(result => {
-      console.log(result.rows);
       templateVars.quizzes = result.rows;
       return getRandomQuiz();
     })
@@ -126,7 +122,6 @@ app.get('/:id', (req, res) => {
       return getAllQuizzes()
     })
     .then(result => {
-      console.log(result.rows);
       templateVars.quizzes = result.rows;
       return getRandomQuiz();
     })

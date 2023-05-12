@@ -47,7 +47,6 @@ router.post('/', (req, res) => {
 
   db.query(checkForUser, [email])
     .then(result => {
-      console.log(result.rows);
       if (result.rows.length === 0) {
         return;
       } else {
@@ -62,7 +61,6 @@ router.post('/', (req, res) => {
       return db.query(addUser, [username, email, hash])
     })
     .then(result => {
-      console.log(result.rows);
       const new_id = result.rows[0].id;
       req.session.user_id = new_id;
       res.redirect(`/users/${new_id}`);

@@ -64,10 +64,6 @@ const getCorrectAnswers = function(quiz_id) {
 
 const submitQuizAttempt = function(user_id, quiz_id, user_score, max_score) {
 
-  console.log("user_id:", user_id);
-  console.log("quiz_id:", quiz_id);
-  console.log("Inside submit function:", user_score);
-
   const queryString =
     `INSERT INTO user_quiz_taken (user_id, quiz_id, user_score, max_score)
     VALUES ($1, $2, $3, $4)

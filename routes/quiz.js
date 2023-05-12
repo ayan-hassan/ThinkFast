@@ -38,7 +38,6 @@ router.get('/create', (req, res) => {
 if(!loggedIn) {
   res.redirect('/login');
 }
-  // console.log(getCategories())
   getCategories()
   .then(result => {
     const categories = result.rows
@@ -66,7 +65,6 @@ router.get('/:id', (req, res) => {
       // if question_id doesn't exist
       questionGroup[question.question_id].choices.push(question.option);
     }
-    console.log(questionGroup);
     return questionGroup;
   };
 
@@ -82,7 +80,6 @@ router.get('/:id', (req, res) => {
       const quiz = data.rows;
       const questions = groupQuestions(quiz);
       const templateVars = {questions, quiz:quiz, quizId:id, loggedIn};
-      console.log(quiz);
       res.render('attempt', templateVars);
     })
     .catch(err => {
@@ -102,14 +99,10 @@ router.get('/results/:id', (req, res) => {
 
 router.post('/submit', (req, res) => {
   const quiz = req.body;
-  console.log("test");
   insertQuiz(quiz, req.session.user_id)
   .then(result => {
     const quiz_id = result.rows[0].id;
-      console.log("query done");
       for (let value of Object.values(quiz)) {
-        console.log("value", value);
-        console.log("quiz id", quiz_id);
         if (typeof(value) === 'object') {
           insertQuestions(value[0], quiz_id)
           .then(result => {
@@ -131,14 +124,10 @@ router.post('/submit', (req, res) => {
         }
 
       }
-      console.log("Query finished")
     })
     .then(() => res.redirect(`/users/${req.session.user_id}`))
     .catch(err => console.log(err));
 
-
-    // res.redirect(`/users/${req.session.user_id}`);
-    //later redirect to user/:id
   })
 
   router.post('/:id', (req, res) => {
@@ -161,16 +150,13 @@ router.post('/submit', (req, res) => {
       .then(data => {
         answers = data.rows;
 
-
         //compare answers to database
 
         let totalCorrectAnswers = 0;
         for (const index in answers) {
           let correctAnswer = answers[index].option;
-          // console.log(numOfQuestion.length);
           for (const response in userResponse) {
             let userAnswer = userResponse[response];
-            // console.log(userResponse[response]);
             if (correctAnswer === userAnswer) {
               totalCorrectAnswers++;
             }
@@ -180,28 +166,12 @@ router.post('/submit', (req, res) => {
       })
       .then(correctCount => {
         user_score = correctCount;
-        console.log("Before submitting:", user_score);
         return submitQuizAttempt(user_id, quiz_id, user_score, answers.length);
       })
       .then(attempt_id => {
-        console.log("After insert:");
-        console.log("user_score:", user_score);
-        console.log("After insert:", attempt_id);
-        res.send({ user_score, attempt_id });//send quiz results to client side
+        res.send({ user_score, attempt_id, answers });//send quiz results to client side
       })
       .catch(err => console.log(err));
   });
-  // {
-    //   quiz_name: 'Test Quiz',
-    //   category: 'History',
-//   thumbnail: 'thumb',
-//   description: 'asdasd',
-//   time_limit: '33',
-//   unlisted: 'on',
-//   question1: [ 'A', '1', '$%**%$', '2', '3' ],
-//   question2: [ 'B', '4', '5', '$%**%$', '6' ],
-//   question3: [ 'C', '7', '8', '9', '$%**%$' ]
-// }
-
 
 module.exports = router;

@@ -46,6 +46,7 @@ $(() => {
     //receives the data sent via res.send on the server side, then display results on the page with jquery
       .then(response => {
         userScore = response.user_score;
+        numOfQuestions = response.answers.length
         $('#results').append("You got  " + userScore + "/" + numOfQuestions + " questions correct!");
       });
 

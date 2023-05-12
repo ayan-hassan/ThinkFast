@@ -4,10 +4,8 @@ $(() => {
 
 
   const reloadQuizzes = (category) => {
-    console.log("Before get", category)
     $.get('/reload', {category})
       .done(function(response) {
-        console.log(response)
         $('.standard-quiz').empty();
         for (let quiz of response) {
           $('.standard-quiz').append(`

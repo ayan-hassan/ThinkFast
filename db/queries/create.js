@@ -2,9 +2,6 @@ const db = require('../connection');
 
 const insertQuiz = function(quiz, user_id) {
 
-  console.log("quiz object", quiz);
-  console.log("quiz category", quiz.category);
-
   const queryCategories = `
   SELECT id
   FROM categories
@@ -17,12 +14,9 @@ const insertQuiz = function(quiz, user_id) {
   RETURNING id;
   `;
 
-  console.log("ready to query");
-
   return db.query(queryCategories, [quiz.category])
     .then(result => {
       const category_id = result.rows[0];
-      console.log("category id", category_id)
       const is_unlisted = quiz.unlisted? true : false;
       return db.query(queryString, [quiz.quiz_name, category_id.id, quiz.description, quiz.thumbnail, is_unlisted, user_id, quiz.time_limit]);
     })

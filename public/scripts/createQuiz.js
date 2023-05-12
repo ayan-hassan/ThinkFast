@@ -128,10 +128,6 @@ $(document).ready(function() {
   ///////////////////////////////////////////////////////////////Function to parse the DOM response adn run SQL inserts
   $('#quizForm').on("submit", function(event) {
     event.preventDefault();
-    // console.log("res body: ", res.body)
-    // const data = $(this).val();
-    // console.log("data: ", data);
-    console.log($(this));
     let incomplete = false;
     let alertMessage = "";
 
@@ -141,7 +137,6 @@ $(document).ready(function() {
       $('input[type="radio"]:checked', (this)).each(function() {
         count++;
       });
-      console.log("count: ", count);
 
       if (count === 0) {
         incomplete = true;
@@ -176,43 +171,6 @@ $(document).ready(function() {
 
     }
   });
-
-
-
-
-  /////////data validation
-  // /////////////////Ayans///////////////////////
-  // $('.submit-answers').on('click', function() {
-  //   let allQuestionsAnswered = true;
-  //   let totalCorrectAnswers = 0;
-
-  //   $('.question').each(function() {
-  //     const question = $(this);
-  //     let hasAnswer = false;
-
-  //     // Check if a radio button is checked
-  //     if (question.find('input[type="radio"]:checked').length > 0) {
-  //       hasAnswer = true;
-  //     }
-
-
-
-  //     if (!hasAnswer) {
-  //       allQuestionsAnswered = false;
-  //       return false; // Break out of the loop if a question is unanswered
-  //     }
-  //   });
-
-  //   if (!allQuestionsAnswered) {
-  //     // All questions have not been answered
-  //     alert('Please answer all of the questions.');
-  //   } else {
-  //     // All questions answered sooo...
-  //     console.log('All questions answered.');
-
-  //   })
-
-
 
 });
 
