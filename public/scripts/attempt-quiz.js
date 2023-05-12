@@ -63,6 +63,19 @@ $(() => {
     });
     // }
   });
+
+
+
+
+const timer = function(time_limit) {
+  setTimeout(() => {
+    $('.submit-answers').trigger('click');
+  }, time_limit);
+
+}
+
+
+
 });
 
 
