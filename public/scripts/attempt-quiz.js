@@ -45,8 +45,8 @@ $(() => {
     $.post('/quiz/' + hiddenId, $('#quiz').serialize())
     //receives the data sent via res.send on the server side, then display results on the page with jquery
       .then(response => {
-        userScore = response.response;
-        $('#results').append("You got  " + response.response + "/" + numOfQuestions + " questions correct!");
+        userScore = response.user_score;
+        $('#results').append("You got  " + userScore + "/" + numOfQuestions + " questions correct!");
       });
 
 
